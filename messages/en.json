@@ -1,0 +1,48 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "readMore": "Read More",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Not Found",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search"
+  },
+  "blog": {
+    "title": "Blog",
+    "latestPosts": "Latest Posts",
+    "allPosts": "All Posts",
+    "categories": "Categories",
+    "tags": "Tags",
+    "publishedOn": "Published on",
+    "readTime": "Read time",
+    "minutes": "minutes",
+    "noResults": "No articles found",
+    "searchPlaceholder": "Search articles...",
+    "relatedPosts": "Related Posts"
+  },
+  "comments": {
+    "title": "Comments",
+    "addComment": "Add Comment",
+    "name": "Name",
+    "email": "Email",
+    "content": "Content",
+    "submit": "Submit Comment",
+    "pending": "Comment is under review",
+    "approved": "Comment approved",
+    "noComments": "No comments yet"
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "builtWith": "Built with {tech}"
+  }
+}

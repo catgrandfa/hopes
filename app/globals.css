@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* 自定义主题变量 */
+@theme {
+  --font-display: "Proxima Nova", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "Menlo", "Monaco", "Cascadia Code", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Code", "Droid Sans Mono", "Courier New", monospace;
+  
+  /* 品牌色彩 */
+  --color-brand-50: oklch(0.98 0.02 200);
+  --color-brand-100: oklch(0.95 0.05 200);
+  --color-brand-500: oklch(0.7 0.2 200);
+  --color-brand-900: oklch(0.3 0.3 200);
+  
+  /* 响应式断点扩展 */
+  --breakpoint-3xl: 120rem;
+  
+  /* 自定义动画 */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+}
+
+/* 自定义工具类 */
+@utility content-auto {
+  content-visibility: auto;
+}
+
+@utility scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* 自定义动画关键帧 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 基础样式重置 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* 代码块样式 */
+  pre {
+    @apply overflow-x-auto rounded-lg border bg-muted p-4;
+  }
+  
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
+  }
+  
+  /* 链接样式 */
+  a {
+    @apply text-primary underline-offset-4 hover:underline;
+  }
+  
+  /* 标题样式 */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+}
+
+/* 组件样式 */
+@layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .prose {
+    @apply max-w-none text-foreground;
+  }
+  
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-foreground;
+  }
+  
+  .prose a {
+    @apply text-primary no-underline hover:underline;
+  }
+  
+  .prose code {
+    @apply text-foreground;
+  }
+  
+  .prose pre {
+    @apply bg-muted;
+  }
+  
+  .prose blockquote {
+    @apply border-l-primary text-foreground;
+  }
+}
