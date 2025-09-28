@@ -1,0 +1,53 @@
+---
+title: "重塑 Hopes 布局外壳"
+slug: "rebuilding-the-hopes-layout-shell"
+excerpt: "记录我们如何重建共享布局、导航与页脚，让中英文页面重新回到统一节奏。"
+publishedAt: "2024-12-19"
+locale: "zh"
+tags: ["Next.js", "Design System", "Layout"]
+categories: ["Engineering"]
+---
+
+修复 `/en` 与 `/zh` 的访问后，我们发现页面虽然能展示，但缺少了熟悉的布局包裹：没有柔和背景、没有导航高亮，像是临时拼装的页面。本文记录我们如何把共享外壳重新搭起来。
+
+## 需要解决的问题
+
+- 共享布局不再渲染品牌渐变与分割线，页面层次感全无。
+- 页头缺少激活态、语言切换在移动端也不够友好。
+- 页脚仍然保留最初的硬编码文案，结构也显得老旧。
+
+## 打造新的页面画布
+
+我们在 `app/[locale]/layout.tsx` 中重新注入了背景高光和分隔线：
+
+```tsx
+<div className="relative flex min-h-screen flex-col bg-background">
+  <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="absolute left-1/2 top-[-220px] h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
+    <div className="absolute bottom-[-260px] left-1/2 h-[460px] w-[820px] -translate-x-1/2 rounded-full bg-secondary/25 blur-[140px]" />
+  </div>
+  <Header />
+  <main className="relative isolate flex-1">
+    <div className="relative z-10">{children}</div>
+  </main>
+  <Footer />
+</div>
+```
+
+这样既保留了各页面自己的 `container` 与间距设置，又恢复了与调色板呼应的温暖背景。
+
+## 导航重新获得呼吸感
+
+`components/layout/header.tsx` 获得最大规模的调整：
+
+- 激活路由用胶囊标签突出，并同步到移动端抽屉。
+- 语言切换沿用同样的胶囊样式，桌面与移动体验统一。
+- 联系按钮放在显眼位置，方便快速跳转。
+
+## 页脚变成真正的落点
+
+新的页脚使用完整的翻译文案、加入技术栈胶囊以及简洁的订阅提示。我们同时补全了 `messages/en.json` 与 `messages/zh.json`，保证双语显示一致。邮件表单暂时没有提交接口，但未来可以接入 Supabase Newsletter。
+
+## 后续计划
+
+布局外壳恢复以后，下一步会专注在内部页面细节，例如分类页、暗色主题和邮件订阅流程。如果你在其他路由上发现布局缺口，也欢迎随时留言。

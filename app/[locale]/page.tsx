@@ -1,91 +1,124 @@
-import { useTranslations } from 'next-intl'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+import { PostCard } from '@/components/blog/post-card'
+import { Button } from '@/components/ui/button'
+import { getLatestPosts, getCategories } from '@/lib/content'
+import { isLocale, type Locale } from '@/lib/i18n'
+import { getTranslations } from 'next-intl/server'
 
 interface HomePageProps {
   params: Promise<{ locale: string }>
 }
 
 export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params
-  const t = useTranslations()
+  const { locale: localeParam } = await params
+
+  if (!isLocale(localeParam)) {
+    notFound()
+  }
+
+  const locale = localeParam as Locale
+
+  const [tHome, tBlog, tCommon, latestPosts, categories] = await Promise.all([
+    getTranslations({ locale, namespace: 'home' }),
+    getTranslations({ locale, namespace: 'blog' }),
+    getTranslations({ locale, namespace: 'common' }),
+    getLatestPosts(locale, 3),
+    getCategories(locale),
+  ])
+
+  const features = [
+    {
+      icon: '⚡',
+      title: tHome('features.stackTitle'),
+      description: tHome('features.stackDescription'),
+    },
+    {
+      icon: '📝',
+      title: tHome('features.mdxTitle'),
+      description: tHome('features.mdxDescription'),
+    },
+    {
+      icon: '🎨',
+      title: tHome('features.designTitle'),
+      description: tHome('features.designDescription'),
+    },
+  ]
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      {/* Hero Section */}
-      <section className="text-center py-20">
-        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-          欢迎来到 Hopes 博客
-        </h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          基于 Next.js 15、React 19、Tailwind CSS 4 和现代化技术栈构建的个人博客系统
-        </p>
-        <div className="flex gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href={`/${locale}/blog`}>
-              {t('blog.title')}
-            </Link>
-          </Button>
-          <Button variant="outline" asChild size="lg">
-            <Link href={`/${locale}/about`}>
-              {t('nav.about')}
-            </Link>
-          </Button>
+    <div className="space-y-20 py-16">
+      <section className="container grid items-center gap-12 rounded-4xl border bg-gradient-to-br from-muted/60 via-card to-card/80 px-8 py-20 md:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-6 text-center md:text-left">
+          <h1 className="text-4xl font-bold leading-tight md:text-5xl">
+            {tHome('heroTitle')}
+          </h1>
+          <p className="text-lg text-muted-foreground">{tHome('heroSubtitle')}</p>
+          <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
+            <Button asChild size="lg" className="w-full md:w-auto">
+              <Link href={`/${locale}/blog`}>{tHome('ctaPrimary')}</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="w-full md:w-auto">
+              <Link href={`/${locale}/about`}>{tHome('ctaSecondary')}</Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="flex flex-col gap-3 rounded-3xl border bg-background/80 p-6 text-left shadow-sm"
+            >
+              <span className="text-3xl">{feature.icon}</span>
+              <h3 className="text-lg font-semibold">{feature.title}</h3>
+              <p className="text-sm text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20">
-        <h2 className="text-3xl font-bold text-center mb-12">技术特性</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            title="Next.js 15"
-            description="最新版本的 Next.js，支持异步 API 和增量式部分预渲染"
-            icon="⚡"
-          />
-          <FeatureCard
-            title="React 19"
-            description="使用最新的 React 特性，包括新的 hooks 和并发功能"
-            icon="⚛️"
-          />
-          <FeatureCard
-            title="Tailwind CSS 4"
-            description="下一代 CSS 框架，支持原生 CSS 变量和更好的性能"
-            icon="🎨"
-          />
-          <FeatureCard
-            title="TypeScript"
-            description="完整的类型安全，提供更好的开发体验"
-            icon="📝"
-          />
-          <FeatureCard
-            title="Supabase"
-            description="现代化的后端即服务，提供数据库和身份验证"
-            icon="🗄️"
-          />
-          <FeatureCard
-            title="国际化"
-            description="支持多语言，轻松切换中英文界面"
-            icon="🌍"
-          />
+      <section className="container space-y-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="text-3xl font-semibold">{tHome('latestTitle')}</h2>
+            <p className="text-muted-foreground">
+              {tBlog('latestPosts')}
+            </p>
+          </div>
+          <Button asChild variant="ghost">
+            <Link href={`/${locale}/blog`}>{tHome('ctaPrimary')}</Link>
+          </Button>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {latestPosts.map((post) => (
+            <PostCard
+              key={`${post.slug}-${post.locale}`}
+              post={post}
+              locale={locale}
+              readMoreLabel={tCommon('readMore')}
+              readingTimeLabel={tBlog('minutes')}
+            />
+          ))}
         </div>
       </section>
-    </div>
-  )
-}
 
-interface FeatureCardProps {
-  title: string
-  description: string
-  icon: string
-}
-
-function FeatureCard({ title, description, icon }: FeatureCardProps) {
-  return (
-    <div className="p-6 border rounded-lg hover:shadow-md transition-shadow">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+      <section className="container space-y-8">
+        <h2 className="text-3xl font-semibold">{tHome('categoriesTitle')}</h2>
+        <div className="flex flex-wrap gap-3">
+          {categories.slice(0, 6).map((category) => (
+            <Link
+              key={category.name}
+              href={{ pathname: `/${locale}/blog`, query: { category: category.name } }}
+              className="inline-flex items-center rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-primary"
+            >
+              {category.name}
+              <span className="ml-2 text-xs opacity-70">{category.count}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

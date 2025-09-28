@@ -1,15 +1,11 @@
-import { notFound } from 'next/navigation'
-import { getRequestConfig } from 'next-intl/server'
-
 // 支持的语言
 export const locales = ['zh', 'en'] as const
 export type Locale = (typeof locales)[number]
 
-export default getRequestConfig(async ({ locale }) => {
-  // 验证传入的 locale 参数
-  if (!locales.includes(locale as Locale)) notFound()
+export const isLocale = (value: unknown): value is Locale =>
+  typeof value === 'string' && locales.includes(value as Locale)
 
-  return {
-    messages: (await import(`../messages/${locale}.json`)).default,
-  }
-})
+export const loadMessages = async (
+  locale: Locale,
+): Promise<Record<string, unknown>> =>
+  (await import(`../messages/${locale}.json`)).default

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9d9b8" />
+      <stop offset="100%" stop-color="#f07b46" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" rx="48" fill="url(#grad)" />
+  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="72" fill="#402418">Hopes Blog</text>
+  <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="32" fill="#402418" opacity="0.75">Next.js 15 · React 19 · Tailwind CSS 4</text>
+</svg>

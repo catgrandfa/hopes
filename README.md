@@ -68,7 +68,6 @@
 - [x] 多语言支持（中文/英文）
 - [x] 深色/浅色主题切换
 - [x] 自定义主题色一键替换
-- [ ] 留言系统（需审核机制）
 
 ### 内容功能
 - [ ] 文章分类管理
@@ -165,7 +164,7 @@ export async function createClient() {
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
     {
       cookies: {
         getAll() {

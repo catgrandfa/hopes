@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="gradTheme" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fcefe3" />
+      <stop offset="100%" stop-color="#f2d2b1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" rx="64" fill="url(#gradTheme)" />
+  <circle cx="360" cy="280" r="140" fill="#f1793a" opacity="0.85" />
+  <circle cx="840" cy="320" r="160" fill="#f7b684" opacity="0.78" />
+  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="64" fill="#3f2312">Accessible Themes</text>
+  <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="30" fill="#3f2312" opacity="0.75">Warm palettes · Light & Dark Modes</text>
+</svg>

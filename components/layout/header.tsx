@@ -1,92 +1,163 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useParams, usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default function Header() {
-  const t = useTranslations()
+  const tNav = useTranslations('nav')
   const params = useParams()
-  const locale = params.locale as string
+  const pathname = usePathname()
+  const locale = (params.locale as string) ?? 'zh'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const pathAfterLocale = (() => {
+    if (!pathname) return ''
+    const segments = pathname.split('/').filter(Boolean)
+    if (segments.length <= 1) return ''
+    const [, ...rest] = segments
+    return rest.length ? `/${rest.join('/')}` : ''
+  })()
+
   const navigation = [
-    { href: `/${locale}`, label: t('nav.home') },
-    { href: `/${locale}/blog`, label: t('nav.blog') },
-    { href: `/${locale}/about`, label: t('nav.about') },
-    { href: `/${locale}/contact`, label: t('nav.contact') },
+    { href: `/${locale}`, label: tNav('home') },
+    { href: `/${locale}/blog`, label: tNav('blog') },
+    { href: `/${locale}/about`, label: tNav('about') },
+    { href: `/${locale}/contact`, label: tNav('contact') },
   ]
 
+  const isActive = (href: string) => {
+    if (!pathname) return false
+    if (href === `/${locale}`) {
+      return pathname === href
+    }
+    return pathname.startsWith(href)
+  }
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href={`/${locale}`} className="text-2xl font-bold">
-            Hopes
-          </Link>
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <div className="container flex h-16 items-center justify-between gap-4">
+        <Link
+          href={`/${locale}`}
+          className="relative inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/90 px-4 py-1.5 text-lg font-semibold tracking-tight shadow-sm transition hover:border-primary/60 hover:text-primary"
+        >
+          <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
+          Hopes
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-foreground/80 hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Language Switcher */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" asChild>
-                <Link href={`/zh${window.location.pathname.substring(3)}`}>
-                  中文
-                </Link>
-              </Button>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href={`/en${window.location.pathname.substring(3)}`}>
-                  EN
-                </Link>
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+        <nav className="hidden md:flex items-center gap-2 rounded-full border border-border/80 bg-background/80 px-1.5 py-1 shadow-sm">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+                isActive(item.href)
+                  ? 'bg-primary text-primary-foreground shadow'
+                  : 'text-muted-foreground hover:text-foreground'
+              )}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t">
-            <div className="flex flex-col space-y-2">
+        <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-1 rounded-full border border-border/80 bg-muted/40 p-1">
+            {[
+              { code: 'zh', label: '中文' },
+              { code: 'en', label: 'EN' },
+            ].map((lang) => {
+              const active = lang.code === locale
+              return (
+                <Link
+                  key={lang.code}
+                  href={`/${lang.code}${pathAfterLocale}`}
+                  className={cn(
+                    'rounded-full px-3 py-1 text-xs font-semibold transition-colors',
+                    active
+                      ? 'bg-background text-foreground shadow'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  {lang.label}
+                </Link>
+              )
+            })}
+          </div>
+
+          <Button asChild size="sm" className="hidden md:inline-flex">
+            <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
+          </Button>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            aria-label="Toggle menu"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
+      </div>
+
+      {isMenuOpen ? (
+        <div className="border-t border-border/60 bg-background/95 shadow-lg md:hidden">
+          <div className="container space-y-6 py-6">
+            <nav className="flex flex-col gap-2">
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block py-2 text-foreground/80 hover:text-foreground transition-colors"
+                  className={cn(
+                    'rounded-2xl px-4 py-2 text-base font-medium transition-colors',
+                    isActive(item.href)
+                      ? 'bg-primary/10 text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
+            </nav>
+
+            <div className="flex items-center gap-2">
+              {[
+                { code: 'zh', label: '中文' },
+                { code: 'en', label: 'EN' },
+              ].map((lang) => {
+                const active = lang.code === locale
+                return (
+                  <Link
+                    key={lang.code}
+                    href={`/${lang.code}${pathAfterLocale}`}
+                    className={cn(
+                      'flex-1 rounded-full border px-3 py-2 text-center text-sm font-medium transition-colors',
+                      active
+                        ? 'border-primary bg-primary/10 text-foreground'
+                        : 'border-border text-muted-foreground hover:text-foreground'
+                    )}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {lang.label}
+                  </Link>
+                )
+              })}
             </div>
+
+            <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
+              <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
+            </Button>
           </div>
-        )}
-      </nav>
+        </div>
+      ) : null}
     </header>
   )
 }

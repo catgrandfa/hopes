@@ -30,7 +30,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 # Supabase (从 Supabase 仪表板获取)
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your-supabase-anon-key
 
 # Database (Supabase 数据库连接字符串)
 DATABASE_URL=your-supabase-database-url
@@ -163,7 +163,7 @@ categories: ["分类"]
 
 - `NEXT_PUBLIC_APP_URL`
 - `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`
 - `DATABASE_URL`
 
 ## 🔧 常见问题

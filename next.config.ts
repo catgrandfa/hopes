@@ -5,10 +5,10 @@ const withNextIntl = createNextIntlPlugin()
 
 const nextConfig: NextConfig = {
   // 启用实验性功能
-  experimental: {
-    // 开启增量式部分预渲染
-    ppr: 'incremental',
-  },
+  // experimental: {
+  //   // 开启增量式部分预渲染
+  //   ppr: 'incremental',
+  // },
   // MDX 支持
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // 图片优化

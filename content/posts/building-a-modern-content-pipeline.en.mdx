@@ -1,0 +1,44 @@
+---
+title: "Building a Modern Content Pipeline"
+slug: "building-a-modern-content-pipeline"
+excerpt: "How Hopes Blog uses MDX, automation and a typed database to keep publishing fast and reliable."
+coverImage: "/images/content-pipeline.svg"
+publishedAt: "2024-02-15"
+locale: "en"
+tags: ["Content", "MDX", "DevOps"]
+categories: ["Process"]
+---
+
+## Why a content pipeline?
+
+Publishing a couple of posts by hand is easy. Sustaining a consistent cadence across multiple authors and languages is not. A modern pipeline helps us:
+
+1. **Structure content** with MDX so components and snippets are reusable.
+2. **Localize quickly** by storing Chinese and English versions side by side.
+3. **Automate deployments**—merge a PR and let CI/Lint/Build handle the rest.
+4. **Stay observable** by shipping logs and analytics for each post launch.
+
+## Organizing sources
+
+Each article follows the `slug.locale.mdx` pattern and defines metadata in the frontmatter:
+
+```mdx
+---
+title: "Building a Modern Content Pipeline"
+slug: "building-a-modern-content-pipeline"
+locale: "en"
+tags: ["Content", "MDX"]
+---
+```
+
+This keeps URLs stable while allowing us to filter by locale directly on the server.
+
+## Automation flow
+
+1. Open a pull request—CI runs `pnpm lint` and `pnpm typecheck` immediately.
+2. GitHub Actions runs `pnpm build` to confirm the App Router bundle succeeds.
+3. Deployment triggers a Supabase function that refreshes the sitemap and RSS feed.
+
+## Wrap up
+
+With fewer manual steps, we can invest more energy into writing thoughtful posts and nurturing the community.

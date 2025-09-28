@@ -1,0 +1,75 @@
+---
+title: "Welcome to Hopes Blog"
+slug: "welcome-to-hopes-blog"
+excerpt: "Kickstarting the new Hopes Blog built with Next.js 15, React 19, Tailwind CSS 4 and friends."
+coverImage: "/images/welcome-cover.svg"
+publishedAt: "2024-01-01"
+locale: "en"
+tags: ["Next.js", "React", "TypeScript", "Blog"]
+categories: ["Tech"]
+---
+
+# Welcome to Hopes Blog
+
+Thanks for stopping by! This is the very first article on a modern, full-stack blog system built with the latest tools.
+
+## Tech Stack
+
+This project is powered by:
+
+- **Next.js 15** – Async APIs, Partial Prerendering and a great developer experience
+- **React 19** – The newest React release with better performance and ergonomics
+- **Tailwind CSS 4** – Utility-first styling backed by native CSS variables
+- **TypeScript** – Full type safety end to end
+- **Supabase** – A batteries-included backend-as-a-service
+- **Drizzle ORM** – Typed database access without the boilerplate
+
+## Core Features
+
+### 🌐 Internationalization
+Toggle between Chinese and English effortlessly with localized routes and copy.
+
+### 📝 Markdown/MDX Support
+Write content in Markdown with support for:
+
+- Syntax-highlighted code blocks
+- Tables, lists, links and images
+- Custom components
+
+### 🎨 Modern Design System
+Built with shadcn/ui patterns and Tailwind CSS 4 for:
+
+- Responsive layouts
+- Light and dark themes
+- Delightful micro-interactions
+- Accessibility considerations
+
+### ⚡ Performance Focused
+
+- Incremental static regeneration
+- Image optimization
+- Code splitting
+- Preloading critical assets
+
+## Developer Experience
+
+This blog aims to stay friendly for contributors:
+
+```typescript
+// Typed database queries using Drizzle
+const posts = await db
+  .select()
+  .from(postsTable)
+  .where(eq(postsTable.published, true))
+  .orderBy(desc(postsTable.publishedAt))
+```
+
+## What’s Next
+
+- [ ] Add site-wide search
+- [ ] Filter by tags and categories
+- [ ] Ship a comment system
+- [ ] Provide RSS/Atom feeds
+- [ ] Integrate performance analytics
+
+Hope you enjoy the journey—more posts are on the way!

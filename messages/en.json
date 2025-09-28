@@ -15,7 +15,10 @@
     "save": "Save",
     "edit": "Edit",
     "delete": "Delete",
-    "search": "Search"
+    "search": "Search",
+    "subscribeTitle": "Stay in the loop",
+    "subscribeDescription": "Drop us a line and we will deliver the latest posts from Hopes Blog straight to you.",
+    "contactUs": "Contact us"
   },
   "blog": {
     "title": "Blog",
@@ -41,8 +44,87 @@
     "approved": "Comment approved",
     "noComments": "No comments yet"
   },
+  "about": {
+    "title": "About Hopes Blog",
+    "subtitle": "Tracking every step of building a modern publishing platform",
+    "description": "Hopes Blog is curated by full-stack engineer Hopes, focusing on web development, design systems and engineering productivity.",
+    "timeline": {
+      "launch": "Project launched",
+      "mdxPipeline": "MDX pipeline shipped",
+      "designSystem": "Design system finalized",
+      "openSource": "Open sourced"
+    },
+    "timelineDescription": {
+      "launch": "Defined the site architecture and shipped the locale-aware routing skeleton.",
+      "mdxPipeline": "Established the MDX-based content workflow and reading-time insights.",
+      "designSystem": "Finalized UI tokens, dark mode and responsive breakpoints.",
+      "openSource": "Published the repository and welcomed community contributions."
+    },
+    "stats": {
+      "posts": "Published posts",
+      "readers": "Newsletter readers",
+      "contributors": "Community contributors"
+    },
+    "values": {
+      "quality": "Quality first",
+      "craft": "Craft the experience",
+      "sharing": "Share openly"
+    },
+    "valuesDescription": {
+      "quality": "Deliver original deep-dives with actionable engineering takeaways.",
+      "craft": "Care about the details—from information architecture to visual polish.",
+      "sharing": "Encourage open source collaboration so everyone can shape the product."
+    },
+    "cta": "What’s next",
+    "latestHighlights": "Latest highlights",
+    "timelineTitle": "Timeline",
+    "timelineDescription": "A snapshot of the milestones from ideation to open sourcing the platform.",
+    "valuesTitle": "Values",
+    "valuesSubtitle": "We believe thoughtful content, craftsmanship and sharing are core to great communities."
+  },
+  "contact": {
+    "title": "Reach the Hopes team",
+    "subtitle": "Collaboration ideas, feedback, speaking invites—our inbox is always open.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send message"
+    },
+    "channelsTitle": "Alternative channels",
+    "email": "Email",
+    "newsletter": "Newsletter",
+    "newsletterDescription": "Subscribe to curated updates delivered straight to your inbox.",
+    "community": "Community",
+    "communityDescription": "Join the conversation on GitHub and help shape the roadmap.",
+    "availability": "We reply to every note within two business days."
+  },
+  "home": {
+    "heroTitle": "Welcome to Hopes Blog",
+    "heroSubtitle": "A full-stack blog powered by Next.js 15, React 19 and Tailwind CSS 4—sharing modern web development and design insights.",
+    "ctaPrimary": "Browse posts",
+    "ctaSecondary": "Meet the team",
+    "features": {
+      "stackTitle": "Modern stack",
+      "stackDescription": "Powered by the latest Next.js App Router, React 19, Supabase and Drizzle ORM.",
+      "mdxTitle": "MDX content workflow",
+      "mdxDescription": "Author in MDX with reusable components, syntax-highlighted code and localisation.",
+      "designTitle": "Cohesive design system",
+      "designDescription": "Tailwind CSS 4 tokens and shadcn-inspired patterns deliver a refined reading experience."
+    },
+    "latestTitle": "Latest posts",
+    "categoriesTitle": "Popular categories",
+    "toolsTitle": "Tools we rely on"
+  },
   "footer": {
     "copyright": "All rights reserved",
-    "builtWith": "Built with {tech}"
+    "builtWith": "Built with {tech}",
+    "tagline": "A modern Next.js 15 blog crafted to share engineering and design stories.",
+    "linksTitle": "Quick links",
+    "newsletterTitle": "Stay in touch",
+    "newsletterDescription": "Sign up to receive monthly notes on shipping with Next.js, design systems and indie hacking.",
+    "newsletterPlaceholder": "you@example.com",
+    "newsletterCta": "Subscribe",
+    "newsletterHint": "We send one curated email per month. Unsubscribe any time."
   }
 }

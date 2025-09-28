@@ -1,0 +1,41 @@
+---
+title: "Designing Warm, Accessible Themes"
+slug: "designing-accessible-themes"
+excerpt: "Lessons learned while crafting the light and dark palettes for Hopes Blog with Tailwind CSS 4."
+coverImage: "/images/theme-design.svg"
+publishedAt: "2024-03-20"
+locale: "en"
+tags: ["Design", "Tailwind", "Accessibility"]
+categories: ["Design"]
+---
+
+## Color system
+
+We anchored the design in a warm, reading-first palette. All tokens live as HSL CSS variables so Tailwind utilities automatically inherit them:
+
+```css
+:root {
+  --background: 32 60% 96%;
+  --foreground: 26 37% 18%;
+}
+```
+
+Dark theme variants simply override the same variables, avoiding duplicated selectors across the codebase.
+
+## Dark mode toggles
+
+Tailwind 4 ships `darkMode: 'class'`. Client components toggle the `document.documentElement` class via system preference listeners or a manual switch, keeping rendering predictable.
+
+## Accessibility wins
+
+- Maintain a 4.5:1 contrast ratio between text and background.
+- Provide `focus-visible` outlines for every interactive element.
+- Lean on semantic HTML and augment with `aria` attributes when needed.
+
+## Motion and delight
+
+Animations should be subtle and purposeful. Hovering a button adds a soft ring to highlight focus. Honor `prefers-reduced-motion` and fall back to instant state changes when users request it.
+
+## Takeaways
+
+Design systems evolve with feedback. Staying token-driven keeps us nimble enough to update color, typography or spacing without chasing individual components.

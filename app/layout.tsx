@@ -1,4 +1,6 @@
 import './globals.css'
+import type { ReactNode } from 'react'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -47,11 +49,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+interface RootLayoutProps {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="zh" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>

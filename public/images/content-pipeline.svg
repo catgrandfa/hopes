@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="gradPipeline" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f5f1e8" />
+      <stop offset="100%" stop-color="#f3c178" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" rx="42" fill="url(#gradPipeline)" />
+  <g fill="#573217" opacity="0.88">
+    <rect x="180" y="180" width="180" height="240" rx="24" />
+    <rect x="420" y="150" width="180" height="270" rx="24" />
+    <rect x="660" y="210" width="180" height="210" rx="24" />
+    <rect x="900" y="130" width="180" height="290" rx="24" />
+  </g>
+  <polyline points="270,160 510,130 750,190 990,110" fill="none" stroke="#f37a3c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="50%" y="78%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="44" fill="#573217">Modern Content Pipeline</text>
+</svg>
