@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(curl:*)",
+      "mcp__web-search-prime__webSearchPrime",
+      "WebFetch(domain:stackoverflow.com)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm add:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

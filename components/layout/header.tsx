@@ -10,154 +10,154 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 export default function Header() {
-  const tNav = useTranslations('nav')
-  const params = useParams()
-  const pathname = usePathname()
-  const locale = (params.locale as string) ?? 'zh'
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+ const tNav = useTranslations('nav')
+ const params = useParams()
+ const pathname = usePathname()
+ const locale = (params.locale as string) ?? 'zh'
+ const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const pathAfterLocale = (() => {
-    if (!pathname) return ''
-    const segments = pathname.split('/').filter(Boolean)
-    if (segments.length <= 1) return ''
-    const [, ...rest] = segments
-    return rest.length ? `/${rest.join('/')}` : ''
-  })()
+ const pathAfterLocale = (() => {
+  if (!pathname) return ''
+  const segments = pathname.split('/').filter(Boolean)
+  if (segments.length <= 1) return ''
+  const [, ...rest] = segments
+  return rest.length ? `/${rest.join('/')}` : ''
+ })()
 
-  const navigation = [
-    { href: `/${locale}`, label: tNav('home') },
-    { href: `/${locale}/blog`, label: tNav('blog') },
-    { href: `/${locale}/about`, label: tNav('about') },
-    { href: `/${locale}/contact`, label: tNav('contact') },
-  ]
+ const navigation = [
+  { href: `/${locale}`, label: tNav('home') },
+  { href: `/${locale}/blog`, label: tNav('blog') },
+  { href: `/${locale}/about`, label: tNav('about') },
+  { href: `/${locale}/contact`, label: tNav('contact') },
+ ]
 
-  const isActive = (href: string) => {
-    if (!pathname) return false
-    if (href === `/${locale}`) {
-      return pathname === href
-    }
-    return pathname.startsWith(href)
+ const isActive = (href: string) => {
+  if (!pathname) return false
+  if (href === `/${locale}`) {
+   return pathname === href
   }
+  return pathname.startsWith(href)
+ }
 
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="container flex h-16 items-center justify-between gap-4">
+ return (
+  <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+   <div className="container flex h-16 items-center justify-between gap-4">
+    <Link
+     href={`/${locale}`}
+     className="relative inline-flex items-center gap-2 border border-border/80 bg-background/90 px-4 py-1.5 text-lg font-semibold tracking-tight shadow-sm transition hover:border-primary/60 hover:text-primary"
+    >
+     <span className="inline-flex h-2 w-2 bg-primary" />
+     Hopes
+    </Link>
+
+    <nav className="hidden md:flex items-center gap-2 border border-border/80 bg-background/80 px-1.5 py-1 shadow-sm">
+     {navigation.map((item) => (
+      <Link
+       key={item.href}
+       href={item.href}
+       className={cn(
+        ' px-4 py-1.5 text-sm font-medium transition-colors',
+        isActive(item.href)
+         ? 'bg-primary text-primary-foreground shadow'
+         : 'text-muted-foreground hover:text-foreground'
+       )}
+      >
+       {item.label}
+      </Link>
+     ))}
+    </nav>
+
+    <div className="flex items-center gap-3">
+     <div className="hidden md:flex items-center gap-1 border border-border/80 bg-muted/40 p-1">
+      {[
+       { code: 'zh', label: '中文' },
+       { code: 'en', label: 'EN' },
+      ].map((lang) => {
+       const active = lang.code === locale
+       return (
         <Link
-          href={`/${locale}`}
-          className="relative inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/90 px-4 py-1.5 text-lg font-semibold tracking-tight shadow-sm transition hover:border-primary/60 hover:text-primary"
+         key={lang.code}
+         href={`/${lang.code}${pathAfterLocale}`}
+         className={cn(
+          ' px-3 py-1 text-xs font-semibold transition-colors',
+          active
+           ? 'bg-background text-foreground shadow'
+           : 'text-muted-foreground hover:text-foreground'
+         )}
         >
-          <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
-          Hopes
+         {lang.label}
         </Link>
+       )
+      })}
+     </div>
 
-        <nav className="hidden md:flex items-center gap-2 rounded-full border border-border/80 bg-background/80 px-1.5 py-1 shadow-sm">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
-                isActive(item.href)
-                  ? 'bg-primary text-primary-foreground shadow'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+     <Button asChild size="sm" className="hidden md:inline-flex">
+      <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
+     </Button>
 
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-1 rounded-full border border-border/80 bg-muted/40 p-1">
-            {[
-              { code: 'zh', label: '中文' },
-              { code: 'en', label: 'EN' },
-            ].map((lang) => {
-              const active = lang.code === locale
-              return (
-                <Link
-                  key={lang.code}
-                  href={`/${lang.code}${pathAfterLocale}`}
-                  className={cn(
-                    'rounded-full px-3 py-1 text-xs font-semibold transition-colors',
-                    active
-                      ? 'bg-background text-foreground shadow'
-                      : 'text-muted-foreground hover:text-foreground'
-                  )}
-                >
-                  {lang.label}
-                </Link>
-              )
-            })}
-          </div>
+     <Button
+      variant="ghost"
+      size="icon"
+      className="md:hidden"
+      aria-label="Toggle menu"
+      onClick={() => setIsMenuOpen(!isMenuOpen)}
+     >
+      {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+     </Button>
+    </div>
+   </div>
 
-          <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
-          </Button>
+   {isMenuOpen ? (
+    <div className="border-t border-border/60 bg-background/95 shadow-lg md:hidden">
+     <div className="container space-y-6 py-6">
+      <nav className="flex flex-col gap-2">
+       {navigation.map((item) => (
+        <Link
+         key={item.href}
+         href={item.href}
+         className={cn(
+          ' px-4 py-2 text-base font-medium transition-colors',
+          isActive(item.href)
+           ? 'bg-primary/10 text-foreground'
+           : 'text-muted-foreground hover:text-foreground'
+         )}
+         onClick={() => setIsMenuOpen(false)}
+        >
+         {item.label}
+        </Link>
+       ))}
+      </nav>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            aria-label="Toggle menu"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
+      <div className="flex items-center gap-2">
+       {[
+        { code: 'zh', label: '中文' },
+        { code: 'en', label: 'EN' },
+       ].map((lang) => {
+        const active = lang.code === locale
+        return (
+         <Link
+          key={lang.code}
+          href={`/${lang.code}${pathAfterLocale}`}
+          className={cn(
+           'flex-1 border px-3 py-2 text-center text-sm font-medium transition-colors',
+           active
+            ? 'border-primary bg-primary/10 text-foreground'
+            : 'border-border text-muted-foreground hover:text-foreground'
+          )}
+          onClick={() => setIsMenuOpen(false)}
+         >
+          {lang.label}
+         </Link>
+        )
+       })}
       </div>
 
-      {isMenuOpen ? (
-        <div className="border-t border-border/60 bg-background/95 shadow-lg md:hidden">
-          <div className="container space-y-6 py-6">
-            <nav className="flex flex-col gap-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'rounded-2xl px-4 py-2 text-base font-medium transition-colors',
-                    isActive(item.href)
-                      ? 'bg-primary/10 text-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
-                  )}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-2">
-              {[
-                { code: 'zh', label: '中文' },
-                { code: 'en', label: 'EN' },
-              ].map((lang) => {
-                const active = lang.code === locale
-                return (
-                  <Link
-                    key={lang.code}
-                    href={`/${lang.code}${pathAfterLocale}`}
-                    className={cn(
-                      'flex-1 rounded-full border px-3 py-2 text-center text-sm font-medium transition-colors',
-                      active
-                        ? 'border-primary bg-primary/10 text-foreground'
-                        : 'border-border text-muted-foreground hover:text-foreground'
-                    )}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {lang.label}
-                  </Link>
-                )
-              })}
-            </div>
-
-            <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
-              <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
-            </Button>
-          </div>
-        </div>
-      ) : null}
-    </header>
-  )
+      <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
+       <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
+      </Button>
+     </div>
+    </div>
+   ) : null}
+  </header>
+ )
 }

@@ -156,7 +156,7 @@ export async function getTags(locale: Locale) {
       tags.set(tag, (tags.get(tag) ?? 0) + 1)
     })
   })
-
+Ï
   return Array.from(tags.entries()).map(([name, count]) => ({ name, count }))
 }
 
