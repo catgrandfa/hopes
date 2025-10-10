@@ -3,12 +3,9 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
+import { Mail } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
-
-const TECH_STACK = ['Next.js 15', 'React 19', 'Tailwind CSS 4', 'TypeScript', 'Supabase']
 
 export default function Footer() {
  const tFooter = useTranslations('footer')
@@ -21,7 +18,6 @@ export default function Footer() {
   { href: `/${locale}`, label: tNav('home') },
   { href: `/${locale}/blog`, label: tNav('blog') },
   { href: `/${locale}/about`, label: tNav('about') },
-  { href: `/${locale}/contact`, label: tNav('contact') },
  ]
 
  return (
@@ -32,30 +28,7 @@ export default function Footer() {
    </div>
    <div className="container relative py-12">
     <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
-     <div className="space-y-6">
-      <Link
-       href={`/${locale}`}
-       className="inline-flex items-center gap-3 border border-border/60 bg-background/80 px-4 py-2 text-xl font-semibold tracking-tight shadow-sm transition hover:border-primary/50 hover:text-primary"
-      >
-       <span className="inline-flex h-2.5 w-2.5 bg-primary" aria-hidden />
-       Hopes Blog
-      </Link>
-
-      <p className="max-w-xl text-sm leading-6 text-muted-foreground">
-       {tFooter('tagline')}
-      </p>
-
-      <div className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground/90">
-       {TECH_STACK.map((item) => (
-        <span
-         key={item}
-         className=" border border-border/80 bg-background/70 px-3 py-1 shadow-sm"
-        >
-         {item}
-        </span>
-       ))}
-      </div>
-     </div>
+  
 
      <div className="grid gap-10 sm:grid-cols-2">
       <div>
@@ -70,7 +43,6 @@ export default function Footer() {
           className="flex items-center justify-between px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
          >
           {item.label}
-          <span aria-hidden className="text-xs">↗</span>
          </Link>
         ))}
        </div>
@@ -78,26 +50,20 @@ export default function Footer() {
 
       <div>
        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        {tFooter('newsletterTitle')}
+        联系方式
        </h3>
        <p className="mt-3 text-sm text-muted-foreground">
-        {tFooter('newsletterDescription')}
+        如有任何问题或建议，欢迎通过邮件与我联系
        </p>
-       <form className="mt-4 flex flex-col gap-3 sm:flex-row">
-        <Input
-         type="email"
-         name="email"
-         placeholder={tFooter('newsletterPlaceholder')}
-         aria-label={tFooter('newsletterPlaceholder')}
-         className="sm:flex-1"
-        />
-        <Button type="submit" className="sm:w-auto">
-         {tFooter('newsletterCta')}
-        </Button>
-       </form>
-       <p className="mt-2 text-xs text-muted-foreground/80">
-        {tFooter('newsletterHint')}
-       </p>
+       <div className="mt-4">
+        <a
+         href="mailto:catgrandfa9898@outlook.com"
+         className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+        >
+         <Mail className="h-4 w-4" />
+         catgrandfa9898@outlook.com
+        </a>
+       </div>
       </div>
      </div>
     </div>

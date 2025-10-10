@@ -9,7 +9,11 @@
       "Bash(pnpm list:*)",
       "Bash(pnpm add:*)",
       "Bash(find:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm install:*)"
     ],
     "deny": [],
     "ask": []

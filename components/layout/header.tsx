@@ -28,7 +28,6 @@ export default function Header() {
   { href: `/${locale}`, label: tNav('home') },
   { href: `/${locale}/blog`, label: tNav('blog') },
   { href: `/${locale}/about`, label: tNav('about') },
-  { href: `/${locale}/contact`, label: tNav('contact') },
  ]
 
  const isActive = (href: string) => {
@@ -44,7 +43,7 @@ export default function Header() {
    <div className="container flex h-16 items-center justify-between gap-4">
     <Link
      href={`/${locale}`}
-     className="relative inline-flex items-center gap-2 border border-border/80 bg-background/90 px-4 py-1.5 text-lg font-semibold tracking-tight shadow-sm transition hover:border-primary/60 hover:text-primary"
+     className="relative inline-flex items-center gap-2   bg-background/90 px-4 py-1.5 text-lg font-semibold tracking-tight transition  hover:text-primary"
     >
      <span className="inline-flex h-2 w-2 bg-primary" />
      Hopes
@@ -90,10 +89,6 @@ export default function Header() {
        )
       })}
      </div>
-
-     <Button asChild size="sm" className="hidden md:inline-flex">
-      <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
-     </Button>
 
      <Button
       variant="ghost"
@@ -151,10 +146,6 @@ export default function Header() {
         )
        })}
       </div>
-
-      <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
-       <Link href={`/${locale}/contact`}>{tNav('contact')}</Link>
-      </Button>
      </div>
     </div>
    ) : null}

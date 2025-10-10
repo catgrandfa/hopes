@@ -15,8 +15,8 @@ import { isLocale, type Locale } from '@/lib/i18n'
 import { getTranslations } from 'next-intl/server'
 
 interface BlogPageProps {
- params: { locale: string }
- searchParams: { q?: string; category?: string; tag?: string }
+ params: Promise<{ locale: string }>
+ searchParams: Promise<{ q?: string; category?: string; tag?: string }>
 }
 
 const filterPosts = (
@@ -52,7 +52,8 @@ const filterPosts = (
 }
 
 export default async function BlogPage({ params, searchParams }: BlogPageProps) {
- const localeParam = params.locale
+ const { locale: localeParam } = await params
+ const { q, category, tag } = await searchParams
 
  if (!isLocale(localeParam)) {
   notFound()
@@ -67,9 +68,7 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
   getTags(locale),
  ])
 
- const query = typeof searchParams.q === 'string' ? searchParams.q.trim() : ''
- const category = typeof searchParams.category === 'string' ? searchParams.category : undefined
- const tag = typeof searchParams.tag === 'string' ? searchParams.tag : undefined
+ const query = typeof q === 'string' ? q.trim() : ''
 
  const posts = filterPosts(allPosts, {
   query: query || undefined,

@@ -2,8 +2,7 @@
   "nav": {
     "home": "Home",
     "blog": "Blog",
-    "about": "About",
-    "contact": "Contact"
+    "about": "About"
   },
   "common": {
     "readMore": "Read More",
@@ -45,86 +44,59 @@
     "noComments": "No comments yet"
   },
   "about": {
-    "title": "About Hopes Blog",
-    "subtitle": "Tracking every step of building a modern publishing platform",
-    "description": "Hopes Blog is curated by full-stack engineer Hopes, focusing on web development, design systems and engineering productivity.",
-    "timeline": {
-      "launch": "Project launched",
-      "mdxPipeline": "MDX pipeline shipped",
-      "designSystem": "Design system finalized",
-      "openSource": "Open sourced"
+    "title": "About Me",
+    "subtitle": "A full-stack engineer with 5 years of experience, focusing on modern web development technology stack",
+    "intro": {
+      "title": "Personal Introduction",
+      "paragraph1": "I am a passionate full-stack engineer with five years of software development experience. I specialize in building high-performance, scalable web applications using modern technology stacks. I excel in both frontend and backend development, with complete project development experience, capable of handling the entire process from requirements analysis to deployment.",
+      "paragraph2": "Beyond technology, I am passionate about learning new technologies, participating in open-source projects, and sharing my development experiences and thoughts through this blog. I believe that continuous learning and knowledge sharing are essential qualities for becoming an excellent engineer."
     },
-    "timelineDescription": {
-      "launch": "Defined the site architecture and shipped the locale-aware routing skeleton.",
-      "mdxPipeline": "Established the MDX-based content workflow and reading-time insights.",
-      "designSystem": "Finalized UI tokens, dark mode and responsive breakpoints.",
-      "openSource": "Published the repository and welcomed community contributions."
+    "skills": {
+      "title": "Skills & Expertise",
+      "js": "JavaScript/TypeScript",
+      "react": "React/Next.js",
+      "nodejs": "Node.js/Express",
+      "database": "PostgreSQL/MongoDB",
+      "devops": "Docker/Kubernetes",
+      "cloud": "AWS/Cloud Services"
     },
-    "stats": {
-      "posts": "Published posts",
-      "readers": "Newsletter readers",
-      "contributors": "Community contributors"
+    "experience": {
+      "title": "Work Experience",
+      "frontend": {
+        "role": "Frontend Developer",
+        "company": "Tech Company",
+        "description": "Responsible for enterprise-level web application development, building user interfaces with React and TypeScript"
+      },
+      "fullstack": {
+        "role": "Full-Stack Developer",
+        "company": "Internet Company",
+        "description": "Led full-stack development for multiple projects, including API design, database architecture, and frontend implementation"
+      },
+      "senior": {
+        "role": "Senior Full-Stack Engineer",
+        "company": "Tech Team",
+        "description": "Responsible for system architecture design, technology selection, and team technical guidance"
+      }
     },
-    "values": {
-      "quality": "Quality first",
-      "craft": "Craft the experience",
-      "sharing": "Share openly"
+    "contact": {
+      "title": "Contact Information",
+      "location": "China",
+      "sendEmail": "Send Email"
     },
-    "valuesDescription": {
-      "quality": "Deliver original deep-dives with actionable engineering takeaways.",
-      "craft": "Care about the details—from information architecture to visual polish.",
-      "sharing": "Encourage open source collaboration so everyone can shape the product."
-    },
-    "cta": "What’s next",
-    "latestHighlights": "Latest highlights",
-    "timelineTitle": "Timeline",
-    "timelineDescription": "A snapshot of the milestones from ideation to open sourcing the platform.",
-    "valuesTitle": "Values",
-    "valuesSubtitle": "We believe thoughtful content, craftsmanship and sharing are core to great communities."
+    "cta": {
+      "title": "Let's Collaborate",
+      "description": "If you have any project collaborations, technical exchanges, or just want to say hello, feel free to contact me anytime!",
+      "button": "Contact Me"
+    }
   },
-  "contact": {
-    "title": "Reach the Hopes team",
-    "subtitle": "Collaboration ideas, feedback, speaking invites—our inbox is always open.",
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "submit": "Send message"
-    },
-    "channelsTitle": "Alternative channels",
-    "email": "Email",
-    "newsletter": "Newsletter",
-    "newsletterDescription": "Subscribe to curated updates delivered straight to your inbox.",
-    "community": "Community",
-    "communityDescription": "Join the conversation on GitHub and help shape the roadmap.",
-    "availability": "We reply to every note within two business days."
-  },
-  "home": {
-    "heroTitle": "Welcome to Hopes Blog",
-    "heroSubtitle": "A full-stack blog powered by Next.js 15, React 19 and Tailwind CSS 4—sharing modern web development and design insights.",
-    "ctaPrimary": "Browse posts",
-    "ctaSecondary": "Meet the team",
-    "features": {
-      "stackTitle": "Modern stack",
-      "stackDescription": "Powered by the latest Next.js App Router, React 19, Supabase and Drizzle ORM.",
-      "mdxTitle": "MDX content workflow",
-      "mdxDescription": "Author in MDX with reusable components, syntax-highlighted code and localisation.",
-      "designTitle": "Cohesive design system",
-      "designDescription": "Tailwind CSS 4 tokens and shadcn-inspired patterns deliver a refined reading experience."
-    },
-    "latestTitle": "Latest posts",
-    "categoriesTitle": "Popular categories",
-    "toolsTitle": "Tools we rely on"
+    "home": {
+    "ctaPrimary": "View all",
+    "latestTitle": "Latest posts"
   },
   "footer": {
     "copyright": "All rights reserved",
     "builtWith": "Built with {tech}",
     "tagline": "A modern Next.js 15 blog crafted to share engineering and design stories.",
-    "linksTitle": "Quick links",
-    "newsletterTitle": "Stay in touch",
-    "newsletterDescription": "Sign up to receive monthly notes on shipping with Next.js, design systems and indie hacking.",
-    "newsletterPlaceholder": "you@example.com",
-    "newsletterCta": "Subscribe",
-    "newsletterHint": "We send one curated email per month. Unsubscribe any time."
+    "linksTitle": "Quick links"
   }
 }
