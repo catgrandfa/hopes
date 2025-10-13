@@ -4,9 +4,16 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useParams, usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Languages } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 
 export default function Header() {
@@ -67,28 +74,30 @@ export default function Header() {
     </nav>
 
     <div className="flex items-center gap-3">
-     <div className="hidden md:flex items-center gap-1 border border-border/80 bg-muted/40 p-1">
-      {[
-       { code: 'zh', label: '中文' },
-       { code: 'en', label: 'EN' },
-      ].map((lang) => {
-       const active = lang.code === locale
-       return (
-        <Link
-         key={lang.code}
-         href={`/${lang.code}${pathAfterLocale}`}
-         className={cn(
-          ' px-3 py-1 text-xs font-semibold transition-colors',
-          active
-           ? 'bg-background text-foreground shadow'
-           : 'text-muted-foreground hover:text-foreground'
-         )}
-        >
-         {lang.label}
-        </Link>
-       )
-      })}
+     <div className="hidden md:block">
+      <DropdownMenu>
+       <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm" className="gap-2">
+         <Languages className="h-4 w-4" />
+         {locale === 'zh' ? '中文' : 'EN'}
+        </Button>
+       </DropdownMenuTrigger>
+       <DropdownMenuContent align="end">
+        <DropdownMenuItem asChild>
+         <Link href={`/zh${pathAfterLocale}`} className="w-full">
+          中文
+         </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+         <Link href={`/en${pathAfterLocale}`} className="w-full">
+          EN
+         </Link>
+        </DropdownMenuItem>
+       </DropdownMenuContent>
+      </DropdownMenu>
      </div>
+
+     <ThemeToggle />
 
      <Button
       variant="ghost"
@@ -123,28 +132,34 @@ export default function Header() {
        ))}
       </nav>
 
-      <div className="flex items-center gap-2">
-       {[
-        { code: 'zh', label: '中文' },
-        { code: 'en', label: 'EN' },
-       ].map((lang) => {
-        const active = lang.code === locale
-        return (
-         <Link
-          key={lang.code}
-          href={`/${lang.code}${pathAfterLocale}`}
-          className={cn(
-           'flex-1 border px-3 py-2 text-center text-sm font-medium transition-colors',
-           active
-            ? 'border-primary bg-primary/10 text-foreground'
-            : 'border-border text-muted-foreground hover:text-foreground'
-          )}
-          onClick={() => setIsMenuOpen(false)}
-         >
-          {lang.label}
-         </Link>
-        )
-       })}
+      <div className="md:hidden">
+       <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+         <Button variant="outline" size="sm" className="w-full justify-start gap-2">
+          <Languages className="h-4 w-4" />
+          {locale === 'zh' ? '中文' : 'EN'}
+         </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start" className="w-full">
+         <DropdownMenuItem asChild>
+          <Link href={`/zh${pathAfterLocale}`} className="w-full" onClick={() => setIsMenuOpen(false)}>
+           中文
+          </Link>
+         </DropdownMenuItem>
+         <DropdownMenuItem asChild>
+          <Link href={`/en${pathAfterLocale}`} className="w-full" onClick={() => setIsMenuOpen(false)}>
+           EN
+          </Link>
+         </DropdownMenuItem>
+        </DropdownMenuContent>
+       </DropdownMenu>
+      </div>
+
+      <div className="flex items-center justify-between">
+       <span className="text-sm font-medium text-muted-foreground">
+        {tNav('theme')}
+       </span>
+       <ThemeToggle />
       </div>
      </div>
     </div>

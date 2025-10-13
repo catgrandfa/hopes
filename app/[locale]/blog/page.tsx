@@ -103,7 +103,7 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
    </section>
 
    <section className="grid gap-10 lg:grid-cols-[1fr_320px]">
-    <div className="grid gap-8 md:grid-cols-2">
+    <div className="grid gap-8 md:grid-cols-3">
      {posts.length ? (
       posts.map((post) => (
        <PostCard

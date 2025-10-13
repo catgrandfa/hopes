@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "blog": "Blog",
-    "about": "About"
+    "about": "About",
+    "theme": "Theme"
   },
   "common": {
     "readMore": "Read More",
@@ -17,7 +18,11 @@
     "search": "Search",
     "subscribeTitle": "Stay in the loop",
     "subscribeDescription": "Drop us a line and we will deliver the latest posts from Hopes Blog straight to you.",
-    "contactUs": "Contact us"
+    "contactUs": "Contact us",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "systemMode": "System",
+    "toggleTheme": "Toggle Theme"
   },
   "blog": {
     "title": "Blog",
@@ -97,6 +102,16 @@
     "copyright": "All rights reserved",
     "builtWith": "Built with {tech}",
     "tagline": "A modern Next.js 15 blog crafted to share engineering and design stories.",
-    "linksTitle": "Quick links"
+    "linksTitle": "Quick links",
+    "contact": {
+      "title": "Contact Information",
+      "description": "If you have any questions or suggestions, feel free to contact me via email"
+    }
+  },
+  "metadata": {
+    "title": "Hopes Blog",
+    "description": "A modern full-stack personal blog system built with Next.js 15",
+    "keywords": ["blog", "Next.js", "React", "TypeScript", "Tailwind CSS"],
+    "siteName": "Hopes Blog"
   }
 }

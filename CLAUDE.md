@@ -119,13 +119,6 @@ Required environment variables:
 - Uses new `@import "tailwindcss"` syntax
 - Custom utilities in `app/globals.css`
 - CSS variables for theming support
-- **Important**: No rounded corners design - all border-radius utilities have been removed
-
-#### Design System Guidelines
-- **No Rounded Corners**: The project uses a flat, angular design with no border-radius
-- All `rounded-*` classes have been removed from components and styles
-- CSS border-radius properties are set to 0
-- UI elements maintain sharp, clean edges throughout the application
 
 ## Development Guidelines
 
@@ -141,13 +134,21 @@ Required environment variables:
 - Implement proper error handling with user feedback
 - Consider internationalization from the start
 
+### Component Development Guidelines
+- **Mandatory shadcn/ui Usage**: All UI components MUST use shadcn/ui components as the foundation
+- **Component Creation Process**:
+  1. First check if the required shadcn/ui component already exists in `components/ui/`
+  2. If not available, create it using the official shadcn/ui CLI command: `npx shadcn@latest add [component-name]`
+  3. Never manually create shadcn/ui components - always use the CLI to ensure consistency and proper configuration
+  4. Customize existing shadcn/ui components as needed, but start with the official implementation
+- **Available Components**: Check `components/ui/` directory first before requesting new components
+- **Style Consistency**: All components should follow the shadcn/ui "new-york" style
+
 ### When Modifying Styles
 - Extend existing Tailwind utilities when possible
 - Use shadcn/ui components as building blocks
 - Maintain the neutral base color scheme
 - Test both light and dark themes
-- **Never use rounded corners** - maintain the flat design aesthetic
-- When adding new components, ensure they follow the no-border-radius pattern
 
 ### When Working with Content
 - Store blog posts as MDX files in `content/posts/`

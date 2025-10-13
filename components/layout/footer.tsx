@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Mail } from 'lucide-react'
 
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
 export default function Footer() {
@@ -50,10 +51,10 @@ export default function Footer() {
 
       <div>
        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        联系方式
+        {tFooter('contact.title')}
        </h3>
        <p className="mt-3 text-sm text-muted-foreground">
-        如有任何问题或建议，欢迎通过邮件与我联系
+        {tFooter('contact.description')}
        </p>
        <div className="mt-4">
         <a
@@ -68,7 +69,8 @@ export default function Footer() {
      </div>
     </div>
 
-    <div className="mt-12 flex flex-col gap-4 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+    <Separator className="mt-12" />
+<div className="flex flex-col gap-4 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
      <p>
       © {currentYear} Hopes Blog. {tFooter('copyright')}.
      </p>

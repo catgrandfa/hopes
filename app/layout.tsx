@@ -1,64 +1,47 @@
 import './globals.css'
 import type { ReactNode } from 'react'
 
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+import { ThemeProvider } from '@/lib/theme'
 
-export const metadata: Metadata = {
- title: {
-  template: '%s | Hopes Blog',
-  default: 'Hopes Blog',
- },
- description: '一个基于 Next.js 15 的现代化全栈个人博客系统',
- keywords: ['博客', 'Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
- authors: [{ name: 'Hopes' }],
- creator: 'Hopes',
- metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
- alternates: {
-  canonical: '/',
-  languages: {
-   'zh-CN': '/zh',
-   'en-US': '/en',
-  },
- },
- openGraph: {
-  type: 'website',
-  locale: 'zh_CN',
-  alternateLocale: 'en_US',
-  title: 'Hopes Blog',
-  description: '一个基于 Next.js 15 的现代化全栈个人博客系统',
-  siteName: 'Hopes Blog',
- },
- twitter: {
-  card: 'summary_large_image',
-  title: 'Hopes Blog',
-  description: '一个基于 Next.js 15 的现代化全栈个人博客系统',
- },
- robots: {
-  index: true,
-  follow: true,
-  googleBot: {
-   index: true,
-   follow: true,
-   'max-video-preview': -1,
-   'max-image-preview': 'large',
-   'max-snippet': -1,
-  },
- },
-}
+// Inter 作为主要正文字体 - 清晰易读
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+// Space Grotesk 作为标题字体 - 现代感强，设计感好
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+// JetBrains Mono 作为代码字体 - 专业清晰
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
+// 根布局不设置 metadata，全部在 locale layout 中处理
 
 interface RootLayoutProps {
  children: ReactNode
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
- return (
-  <html lang="zh" suppressHydrationWarning>
-   <body className={`${inter.variable} font-sans antialiased`}>
-    {children}
-   </body>
-  </html>
- )
+  // 由于这个布局是根布局，无法直接获取路由参数
+  // lang 属性将由浏览器和中间件自动处理
+  return (
+    <html suppressHydrationWarning>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <ThemeProvider defaultTheme="system">
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
 }

@@ -1,12 +1,72 @@
 import type { ReactNode } from 'react'
 
+import type { Metadata } from 'next'
+
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import { isLocale, locales } from '@/lib/i18n'
+
+// 生成多语言 metadata
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+
+  const title = t('title')
+  const description = t('description')
+  const keywords = t.raw('keywords') as string[]
+  const siteName = t('siteName')
+
+  return {
+    title: {
+      template: `%s | ${title}`,
+      default: title,
+    },
+    description,
+    keywords,
+    authors: [{ name: 'Hopes' }],
+    creator: 'Hopes',
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+    alternates: {
+      canonical: locale === 'zh' ? '/' : `/${locale}`,
+      languages: {
+        'zh-CN': '/zh',
+        'en-US': '/en',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: locale === 'zh' ? 'zh_CN' : 'en_US',
+      alternateLocale: locale === 'zh' ? 'en_US' : 'zh_CN',
+      title,
+      description,
+      siteName,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  }
+}
 
 interface LocaleLayoutProps {
  children: ReactNode

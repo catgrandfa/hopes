@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware'
 import { updateSession } from '@/utils/supabase/middleware'
-import { type NextRequest, NextResponse } from 'next/server'
+import { type NextRequest,  } from 'next/server'
 
 // 创建国际化中间件
 const intlMiddleware = createMiddleware({

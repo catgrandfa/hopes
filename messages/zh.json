@@ -2,7 +2,8 @@
   "nav": {
     "home": "首页",
     "blog": "博客",
-    "about": "关于"
+    "about": "关于",
+    "theme": "主题"
   },
   "common": {
     "readMore": "阅读更多",
@@ -17,7 +18,11 @@
     "search": "搜索",
     "subscribeTitle": "订阅最新文章",
     "subscribeDescription": "留下联系方式，第一时间获取 Hopes 博客的最新内容。",
-    "contactUs": "联系我们"
+    "contactUs": "联系我们",
+    "lightMode": "浅色模式",
+    "darkMode": "深色模式",
+    "systemMode": "跟随系统",
+    "toggleTheme": "切换主题"
   },
   "blog": {
     "title": "博客",
@@ -97,6 +102,16 @@
     "copyright": "版权所有",
     "builtWith": "使用 {tech} 构建",
     "tagline": "基于 Next.js 15 的现代化个人博客，分享技术与设计实践。",
-    "linksTitle": "快速链接"
+    "linksTitle": "快速链接",
+    "contact": {
+      "title": "联系方式",
+      "description": "如有任何问题或建议，欢迎通过邮件与我联系"
+    }
+  },
+  "metadata": {
+    "title": "Hopes Blog",
+    "description": "一个基于 Next.js 15 的现代化全栈个人博客系统",
+    "keywords": ["博客", "Next.js", "React", "TypeScript", "Tailwind CSS"],
+    "siteName": "Hopes Blog"
   }
 }
