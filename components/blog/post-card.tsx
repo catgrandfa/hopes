@@ -22,7 +22,7 @@ export function PostCard({
  readingTimeLabel,
 }: PostCardProps) {
  return (
-  <Card className="group relative flex h-full flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-lg">
+  <Card className="group relative flex max-h-72  flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-lg">
    <CardHeader className="relative h-28 w-full overflow-hidden p-0">
     {post.coverImage ? (
      <Image

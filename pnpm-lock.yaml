@@ -35,6 +35,9 @@ dependencies:
   '@supabase/supabase-js':
     specifier: ^2.58.0
     version: 2.58.0
+  '@vercel/speed-insights':
+    specifier: ^1.2.0
+    version: 1.2.0(next@15.5.4)(react@19.1.1)
   class-variance-authority:
     specifier: ^0.7.1
     version: 0.7.1
@@ -2901,6 +2904,34 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@vercel/speed-insights@1.2.0(next@15.5.4)(react@19.1.1):
+    resolution: {integrity: sha512-y9GVzrUJ2xmgtQlzFP2KhVRoCglwfRQgjyfY607aU0hh0Un6d0OUyrJkjuAlsV18qR4zfoFPs/BiIj9YDS6Wzw==}
+    requiresBuild: true
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
+    dependencies:
+      next: 15.5.4(react-dom@19.1.1)(react@19.1.1)
+      react: 19.1.1
+    dev: false
 
   /acorn-jsx@5.3.2(acorn@8.15.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}

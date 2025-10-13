@@ -1,6 +1,6 @@
 import './globals.css'
 import type { ReactNode } from 'react'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 
 import { ThemeProvider } from '@/lib/theme'
@@ -41,6 +41,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider defaultTheme="system">
           {children}
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
