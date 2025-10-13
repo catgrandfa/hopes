@@ -79,15 +79,9 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
  return (
   <div className="container space-y-16 py-16">
    <section className="space-y-6 text-center">
-    <span className="inline-flex items-center border border-primary/40 px-4 py-1 text-sm font-medium text-primary">
-     Hopes • {t('title')}
-    </span>
     <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
      {t('latestPosts')}
     </h1>
-    <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-     {t('searchPlaceholder')}
-    </p>
 
     <form className="mx-auto flex max-w-xl items-center gap-4" method="get">
      <Input

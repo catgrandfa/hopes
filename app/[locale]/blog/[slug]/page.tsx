@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, Tag } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
+import { BlogContent } from '@/components/blog/blog-content'
 import { getAllPosts, getPostBySlug } from '@/lib/content'
 import { isLocale, locales, type Locale } from '@/lib/i18n'
 import { formatDate } from '@/lib/utils'
@@ -79,63 +80,66 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   .slice(0, 3)
 
  return (
-  <div className="container space-y-16 py-16">
-   <section className="space-y-10">
-    <div className="space-y-6 text-center">
-     <span className="inline-flex items-center bg-secondary px-4 py-1 text-sm font-semibold uppercase tracking-wide text-secondary-foreground">
-      {post.categories?.[0] ?? 'Blog'}
-     </span>
-     <h1 className="text-4xl font-bold leading-tight md:text-5xl">{post.title}</h1>
-     {post.excerpt ? (
-      <p className="mx-auto max-w-2xl text-lg text-muted-foreground">{post.excerpt}</p>
-     ) : null}
-     <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-      <span className="inline-flex items-center gap-1">
-       <Calendar className="h-4 w-4" />
-       {formatDate(post.publishedAt, locale)}
-      </span>
-      <span className="inline-flex items-center gap-1">
-       <Clock className="h-4 w-4" />
-       {post.readingTime} {t('minutes')}
-      </span>
-      {post.tags?.length ? (
-       <span className="inline-flex items-center gap-1">
-        <Tag className="h-4 w-4" />
-        {post.tags.join(', ')}
-       </span>
+  <div className="container py-16">
+   <BlogContent locale={locale}>
+    <div className="space-y-16">
+     {/* 文章头部信息 */}
+     <section className="space-y-8">
+      <div className="space-y-6 text-center">
+       <h1 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">{post.title}</h1>
+       {post.excerpt ? (
+        <p className="mx-auto max-w-2xl text-lg text-muted-foreground">{post.excerpt}</p>
+       ) : null}
+       <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+        <span className="inline-flex items-center gap-1">
+         <Calendar className="h-4 w-4" />
+         {formatDate(post.publishedAt, locale)}
+        </span>
+        <span className="inline-flex items-center gap-1">
+         <Clock className="h-4 w-4" />
+         {post.readingTime} {t('minutes')}
+        </span>
+        {post.tags?.length ? (
+         <span className="inline-flex items-center gap-1">
+          <Tag className="h-4 w-4" />
+          {post.tags.join(', ')}
+         </span>
+        ) : null}
+       </div>
+      </div>
+
+      {post.coverImage ? (
+       <div className="relative mx-auto max-w-4xl overflow-hidden rounded-lg border bg-muted shadow-sm">
+        <Image
+         src={post.coverImage}
+         alt={post.title}
+         width={1200}
+         height={630}
+         className="h-auto w-full object-cover"
+         priority
+        />
+       </div>
       ) : null}
-     </div>
+     </section>
+
+     {/* 文章内容 */}
+     <article className="space-y-10">
+      <div className="prose prose-lg mx-auto w-full max-w-none text-foreground dark:prose-invert">
+       {post.content}
+      </div>
+
+      {post.tags?.length ? (
+       <div className="flex flex-wrap gap-2 border-t pt-6">
+        {post.tags.map((tagName) => (
+         <Badge key={tagName} variant="muted">
+          #{tagName}
+         </Badge>
+        ))}
+       </div>
+      ) : null}
+     </article>
     </div>
-
-    {post.coverImage ? (
-     <div className="relative overflow-hidden border bg-muted">
-      <Image
-       src={post.coverImage}
-       alt={post.title}
-       width={1600}
-       height={840}
-       className="h-auto w-full object-cover"
-       priority
-      />
-     </div>
-    ) : null}
-   </section>
-
-   <article className="mx-auto max-w-3xl space-y-10">
-    <div className="prose prose-lg mx-auto w-full text-foreground dark:prose-invert">
-     {post.content}
-    </div>
-
-    {post.tags?.length ? (
-     <div className="flex flex-wrap gap-2 border-t pt-6">
-      {post.tags.map((tagName) => (
-       <Badge key={tagName} variant="muted">
-        #{tagName}
-       </Badge>
-      ))}
-     </div>
-    ) : null}
-   </article>
+   </BlogContent>
 
    {relatedPosts.length ? (
     <section className="space-y-6">
