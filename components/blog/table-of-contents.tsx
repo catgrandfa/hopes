@@ -162,7 +162,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
               onClick={() => handleHeadingClick(heading.id)}
               className={cn(
                 'w-full text-left text-sm transition-colors hover:text-foreground',
-                'flex items-center gap-2 py-1 px-2 rounded-md',
+                'flex items-center gap-2 py-1 px-2 rounded-md cursor-pointer',
                 'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
                 isActive
                   ? 'bg-primary/10 text-primary font-medium'

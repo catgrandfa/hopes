@@ -84,12 +84,12 @@ export default function Header() {
        </DropdownMenuTrigger>
        <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
-         <Link href={`/zh${pathAfterLocale}`} className="w-full">
+         <Link href={`/zh${pathAfterLocale}`} className="w-full cursor-pointer">
           中文
          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-         <Link href={`/en${pathAfterLocale}`} className="w-full">
+         <Link href={`/en${pathAfterLocale}`} className="w-full cursor-pointer">
           EN
          </Link>
         </DropdownMenuItem>
@@ -142,12 +142,12 @@ export default function Header() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-full">
          <DropdownMenuItem asChild>
-          <Link href={`/zh${pathAfterLocale}`} className="w-full" onClick={() => setIsMenuOpen(false)}>
+          <Link href={`/zh${pathAfterLocale}`} className="w-full cursor-pointer" onClick={() => setIsMenuOpen(false)}>
            中文
           </Link>
          </DropdownMenuItem>
          <DropdownMenuItem asChild>
-          <Link href={`/en${pathAfterLocale}`} className="w-full" onClick={() => setIsMenuOpen(false)}>
+          <Link href={`/en${pathAfterLocale}`} className="w-full cursor-pointer" onClick={() => setIsMenuOpen(false)}>
            EN
           </Link>
          </DropdownMenuItem>

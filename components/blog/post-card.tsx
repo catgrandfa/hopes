@@ -54,7 +54,7 @@ export function PostCard({
 
     <div>
      <h3 className="text-base font-semibold tracking-tight text-foreground line-clamp-2">
-      <Link href={`/${locale}/blog/${post.slug}`} className="hover:underline">
+      <Link href={`/${locale}/blog/${post.slug}`} className="hover:underline cursor-pointer">
        {post.title}
       </Link>
      </h3>
@@ -77,7 +77,7 @@ export function PostCard({
    <CardFooter className="mt-auto px-3 pb-3 pt-0">
      <Link
       href={`/${locale}/blog/${post.slug}`}
-      className="text-xs font-medium text-primary underline-offset-4 hover:underline"
+      className="text-xs font-medium text-primary underline-offset-4 hover:underline cursor-pointer"
      >
       {readMoreLabel}
      </Link>

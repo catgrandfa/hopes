@@ -15,7 +15,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={handleToggle}
-      className="relative flex items-center justify-center w-9 h-9 border border-border/60 bg-background hover:bg-muted transition-colors"
+      className="relative flex items-center justify-center w-9 h-9 border border-border/60 bg-background hover:bg-muted transition-colors cursor-pointer"
       aria-label={t('toggleTheme')}
     >
       <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

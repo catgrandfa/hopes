@@ -60,11 +60,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
  }
 
  const locale = localeParam as Locale
- const [post, allPosts, t, tCommon] = await Promise.all([
+ const [post, allPosts, t, ] = await Promise.all([
   getPostBySlug(locale, slug),
   getAllPosts(locale),
   getTranslations({ locale, namespace: 'blog' }),
-  getTranslations({ locale, namespace: 'common' }),
  ])
 
  if (!post) {
@@ -149,7 +148,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
        <Link
         key={`${related.slug}-${related.locale}`}
         href={`/${locale}/blog/${related.slug}`}
-        className="group border bg-card p-6 transition hover:-translate-y-1 hover:shadow-lg"
+        className="group border bg-card p-6 transition hover:-translate-y-1 hover:shadow-lg cursor-pointer"
        >
         <p className="text-sm text-muted-foreground">
          {formatDate(related.publishedAt, locale)}
@@ -166,7 +165,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </section>
    ) : null}
 
-   <section className=" border bg-muted/30 p-10 text-center">
+   {/* <section className=" border bg-muted/30 p-10 text-center">
     <h2 className="text-2xl font-semibold">{tCommon('subscribeTitle', { default: 'Stay in the loop' })}</h2>
     <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
      {tCommon('subscribeDescription', {
@@ -179,7 +178,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     >
      {tCommon('contactUs', { default: 'Contact us' })}
     </Link>
-   </section>
+   </section> */}
   </div>
  )
 }

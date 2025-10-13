@@ -35,7 +35,7 @@ export const mdxComponents = {
  ),
  a: (props: AnchorProps) => (
   <a
-   className="font-medium text-primary underline-offset-4 transition hover:underline"
+   className="font-medium text-primary underline-offset-4 transition hover:underline cursor-pointer"
    {...props}
   />
  ),

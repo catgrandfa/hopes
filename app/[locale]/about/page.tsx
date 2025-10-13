@@ -1,8 +1,6 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Mail, MapPin } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import { isLocale, type Locale } from '@/lib/i18n'
 import { getTranslations } from 'next-intl/server'
 
@@ -114,19 +112,19 @@ export default async function AboutPage({ params }: AboutPageProps) {
        </div>
       </div>
 
-      <div className="flex gap-3 mt-6">
+      {/* <div className="flex gap-3 mt-6">
        <Button variant="outline" size="sm" asChild>
         <Link href="mailto:catgrandfa9898@outlook.com">
          <Mail className="h-4 w-4 mr-2" />
          {t('contact.sendEmail')}
         </Link>
        </Button>
-      </div>
+      </div> */}
      </div>
     </div>
    </section>
 
-   <section className="mx-auto max-w-4xl text-center border bg-gradient-to-br from-muted/40 via-card to-card/60 p-12">
+   {/* <section className="mx-auto max-w-4xl text-center border bg-gradient-to-br from-muted/40 via-card to-card/60 p-12">
     <h2 className="text-2xl font-semibold mb-4">{t('cta.title')}</h2>
     <p className="text-muted-foreground mb-6">
       {t('cta.description')}
@@ -137,7 +135,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       {t('cta.button')}
      </Link>
     </Button>
-   </section>
+   </section> */}
   </div>
  )
 }
