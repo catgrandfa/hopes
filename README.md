@@ -242,6 +242,9 @@ npx shadcn@latest add select tabs dialog sheet
 # 安装依赖
 pnpm install
 
+# 安装 Git hooks（代码质量保证）
+./scripts/install-git-hooks.sh
+
 # 启动开发服务器
 pnpm dev
 
@@ -254,7 +257,38 @@ pnpm typecheck
 
 # 代码检查
 pnpm lint
+
+# 构建项目
+pnpm build
 ```
+
+### Git Hooks 自动化检查
+
+项目配置了 Git hooks 来确保代码质量：
+
+#### Pre-commit 检查
+- **ESLint 检查**：确保代码符合规范
+- **TypeScript 类型检查**：确保没有类型错误
+- **构建检查**：确保项目可以成功构建
+
+#### Commit Message 验证
+- **Conventional Commits 格式**：推荐使用标准格式
+- **长度限制**：第一行 10-72 字符
+- **交互式验证**：非标准格式会提示确认
+
+#### 提交格式示例
+```bash
+feat(auth): add user authentication
+fix(blog): resolve image loading issue
+docs(readme): update installation instructions
+```
+
+#### 跳过检查（不推荐）
+```bash
+git commit --no-verify -m "your message"
+```
+
+> **注意**：Git hooks 只在本地生效，团队成员需要运行安装脚本。
 
 ### 部署注意事项
 - ✅ **Vercel** - 原生支持 Next.js 15

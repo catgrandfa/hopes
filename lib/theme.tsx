@@ -6,7 +6,7 @@ export type Theme = 'light' | 'dark' | 'system'
 
 interface ThemeContextType {
   theme: Theme
-  setTheme: (theme: Theme) => void
+  setTheme: (_theme: Theme) => void
   systemTheme: 'light' | 'dark'
   resolvedTheme: 'light' | 'dark'
 }
@@ -95,15 +95,16 @@ export function ThemeProvider({
     return null
   }
 
+  // 明确使用所有接口属性以避免 ESLint 警告
+  const contextValue: ThemeContextType = {
+    theme,
+    setTheme: handleSetTheme,
+    systemTheme,
+    resolvedTheme: resolvedThemeValue,
+  }
+
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        setTheme: handleSetTheme,
-        systemTheme,
-        resolvedTheme: resolvedThemeValue,
-      }}
-    >
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   )

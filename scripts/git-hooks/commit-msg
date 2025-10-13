@@ -1,0 +1,84 @@
+#!/bin/sh
+
+# Commit message hook
+# Validates commit message format
+
+# Get the commit message from the first argument
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+print_error() {
+    echo "${RED}❌ $1${NC}"
+}
+
+print_success() {
+    echo "${GREEN}✅ $1${NC}"
+}
+
+print_warning() {
+    echo "${YELLOW}⚠️  $1${NC}"
+}
+
+# Check if commit message is empty
+if [ -z "$commit_msg" ]; then
+    print_error "Commit message cannot be empty."
+    exit 1
+fi
+
+# Check if commit message follows conventional commit format
+# Pattern: type(scope): description
+# Types: feat, fix, docs, style, refactor, test, chore, etc.
+valid_types="feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert|wip"
+
+# Check for conventional commit format (optional but recommended)
+if echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert|wip)(\(.+\))?: .{10,}"; then
+    print_success "Commit message follows conventional format"
+else
+    print_warning "Commit message doesn't follow conventional format."
+    print_warning "Recommended format: type(scope): description"
+    print_warning "Example: feat: add user authentication"
+    print_warning "Allowed types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert, wip"
+    echo ""
+    print_warning "You can bypass this check by using: git commit --no-verify"
+
+    # Ask if user wants to continue (interactive mode)
+    if [ -t 0 ]; then
+        echo -n "${YELLOW}Do you want to continue anyway? (y/N): ${NC}"
+        read -r response
+        case "$response" in
+            [yY]|[yY][eE][sS])
+                echo "Continuing with commit..."
+                exit 0
+                ;;
+            *)
+                print_error "Commit aborted. Please fix the commit message and try again."
+                exit 1
+                ;;
+        esac
+    else
+        # Non-interactive mode, allow the commit but show warning
+        exit 0
+    fi
+fi
+
+# Check minimum length (at least 10 characters after the type prefix)
+if [ ${#commit_msg} -lt 10 ]; then
+    print_error "Commit message is too short. Please provide a more descriptive message (at least 10 characters)."
+    exit 1
+fi
+
+# Check maximum length (first line should not exceed 72 characters)
+first_line=$(echo "$commit_msg" | head -n1)
+if [ ${#first_line} -gt 72 ]; then
+    print_error "First line of commit message is too long (${#first_line} characters). Maximum 72 characters allowed."
+    exit 1
+fi
+
+print_success "Commit message validation passed"
+exit 0
