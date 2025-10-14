@@ -21,7 +21,8 @@
       "Bash(pnpm lint:*)",
       "Bash(npx eslint:*)",
       "Bash(chmod:*)",
-      "Bash(./scripts/install-git-hooks.sh:*)"
+      "Bash(./scripts/install-git-hooks.sh:*)",
+      "Bash(npx treer:*)"
     ],
     "deny": [],
     "ask": []
