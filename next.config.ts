@@ -6,8 +6,8 @@ const withNextIntl = createNextIntlPlugin()
 const nextConfig: NextConfig = {
   // Enable experimental features for better performance
   experimental: {
-    // 优化编译
-    optimizeCss: true,
+    // CSS 优化暂时禁用，需要额外依赖
+    // optimizeCss: true,
   },
 
   // 服务器外部包配置
