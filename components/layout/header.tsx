@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X, Languages } from 'lucide-react'
 
@@ -14,6 +14,7 @@ export default function Header() {
   const tNav = useTranslations('nav')
   const params = useParams()
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const locale = (params.locale as string) ?? 'zh'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -35,10 +36,23 @@ export default function Header() {
 
   const isActive = (href: string) => {
     if (!pathname) return false
+
+    const url = new URL(href, `http://localhost`)
+    const currentTag = searchParams.get('tag')
+    const hrefTag = url.searchParams.get('tag')
+
+    // Handle home page
     if (href === `/${locale}`) {
-      return pathname === href
+      return pathname === href && !currentTag
     }
-    return pathname.startsWith(href)
+
+    // Handle pages with query parameters (like blog?tag=lab)
+    if (hrefTag) {
+      return pathname === `/${locale}/blog` && currentTag === hrefTag
+    }
+
+    // Handle regular pages
+    return pathname.startsWith(href.split('?')[0])
   }
 
   return (
@@ -84,10 +98,10 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                'px-4 py-1.5 text-sm font-medium transition-colors',
+                'px-4 py-1.5 text-sm font-medium transition-all duration-200',
                 isActive(item.href)
-                  ? 'bg-primary text-primary-foreground shadow'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/30 ring-offset-2 ring-offset-background'
+                  : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
               )}
             >
               {item.label}
@@ -98,7 +112,10 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
             <Button variant="outline" size="sm" className="gap-2" asChild>
-              <Link href={`/${locale === 'zh' ? 'en' : 'zh'}${pathAfterLocale}`} className="cursor-pointer">
+              <Link
+                href={`/${locale === 'zh' ? 'en' : 'zh'}${pathAfterLocale}`}
+                className="cursor-pointer"
+              >
                 <Languages className="h-4 w-4" />
                 {locale === 'zh' ? 'EN' : '中文'}
               </Link>
@@ -128,10 +145,10 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'px-4 py-2 text-base font-medium transition-colors',
+                    'px-4 py-2 text-base font-medium transition-all duration-200',
                     isActive(item.href)
-                      ? 'bg-primary/10 text-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? 'bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/30 ring-offset-2 ring-offset-background'
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                   )}
                   onClick={() => setIsMenuOpen(false)}
                 >
