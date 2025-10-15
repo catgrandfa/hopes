@@ -123,8 +123,8 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
                     }}
                     className={
                       active
-                        ? 'bg-primary text-primary-foreground inline-flex items-center px-3 py-1 text-sm font-medium'
-                        : 'border-border text-muted-foreground hover:border-primary hover:text-foreground inline-flex items-center border px-3 py-1 text-sm transition'
+                        ? 'bg-primary text-primary-foreground inline-flex items-center px-3 py-1 text-sm font-medium shadow-sm ring-2 ring-primary/20 ring-offset-2 ring-offset-background'
+                        : 'border-border text-muted-foreground hover:border-primary hover:text-foreground hover:shadow-sm inline-flex items-center border px-3 py-1 text-sm transition-all duration-200'
                     }
                   >
                     {name}
@@ -153,8 +153,8 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
                     }}
                     className={
                       active
-                        ? 'bg-secondary text-secondary-foreground inline-flex items-center px-3 py-1 text-xs font-semibold tracking-wide uppercase'
-                        : 'border-border text-muted-foreground hover:border-primary hover:text-primary inline-flex items-center border px-3 py-1 text-xs font-semibold tracking-wide uppercase transition'
+                        ? 'bg-secondary text-secondary-foreground inline-flex items-center px-3 py-1 text-xs font-semibold tracking-wide uppercase shadow-sm ring-2 ring-secondary/20 ring-offset-2 ring-offset-background'
+                        : 'border-border text-muted-foreground hover:border-secondary hover:text-secondary-foreground hover:shadow-sm inline-flex items-center border px-3 py-1 text-xs font-semibold tracking-wide uppercase transition-all duration-200'
                     }
                   >
                     #{name}
