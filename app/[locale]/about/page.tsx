@@ -41,26 +41,26 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <div className="grid gap-6 md:grid-cols-3">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">技术实践</CardTitle>
+                  <CardTitle className="text-lg">{t('vision.tech.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription>{t('vision.tech')}</CardDescription>
+                  <CardDescription>{t('vision.tech.description')}</CardDescription>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">可持续的写作</CardTitle>
+                  <CardTitle className="text-lg">{t('vision.lab.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription>{t('vision.lab')}</CardDescription>
+                  <CardDescription>{t('vision.lab.description')}</CardDescription>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">可被看见的希望</CardTitle>
+                  <CardTitle className="text-lg">{t('vision.notes.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription>{t('vision.notes')}</CardDescription>
+                  <CardDescription>{t('vision.notes.description')}</CardDescription>
                 </CardContent>
               </Card>
             </div>

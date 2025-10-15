@@ -60,9 +60,18 @@
     },
     "vision": {
       "title": "Three Core Themes",
-      "tech": "Practical technology: From problem to solution, from trade-offs to implementation, emphasizing boundaries and choices.",
-      "lab": "Sustainable writing: Driven by weekly notes, lists, and experiments, not chasing trends but \"reusable value\".",
-      "notes": "Visible hope: Between vulnerability and resilience, leaving authentic traces and gentle expressions."
+      "tech": {
+        "title": "Engineering",
+        "description": "Practical technology: From problem to solution, from trade-offs to implementation, emphasizing boundaries and choices."
+      },
+      "lab": {
+        "title": "Sustainable Writing",
+        "description": "Driven by weekly notes, lists, and experiments, not chasing trends but \"reusable value\"."
+      },
+      "notes": {
+        "title": "Visible Hope",
+        "description": "Between vulnerability and resilience, leaving authentic traces and gentle expressions."
+      }
     },
     "skills": {
       "title": "Skills & Expertise",
