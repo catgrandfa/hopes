@@ -27,6 +27,8 @@ export function PostCard({ post, locale, readMoreLabel, readingTimeLabel }: Post
             className="object-cover transition duration-500 group-hover:scale-105"
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             priority={false}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8A8A"
           />
         ) : (
           <div className="from-primary/10 via-secondary/40 to-accent/30 flex h-full w-full items-center justify-center bg-gradient-to-br">
