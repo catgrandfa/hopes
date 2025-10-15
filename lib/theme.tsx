@@ -103,9 +103,5 @@ export function ThemeProvider({
     resolvedTheme: resolvedThemeValue,
   }
 
-  return (
-    <ThemeContext.Provider value={contextValue}>
-      {children}
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>
 }

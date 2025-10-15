@@ -23,7 +23,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
   const updateHeadings = useCallback(() => {
     const headingElements = Array.from(
       document.querySelectorAll('h2[id], h3[id], h4[id], h5[id], h6[id]')
-    ).map((element) => ({
+    ).map(element => ({
       id: element.id,
       text: element.textContent || '',
       level: parseInt(element.tagName.substring(1)),
@@ -56,7 +56,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
     // 设置 Intersection Observer 来跟踪当前可见的标题
     observerRef.current = new IntersectionObserver(
-      (entries) => {
+      entries => {
         // 找到所有正在相交的元素
         const intersectingEntries = entries.filter(entry => entry.isIntersecting)
 
@@ -84,7 +84,7 @@ export function TableOfContents({ className }: TableOfContentsProps) {
       }
 
       // 观察新的标题元素
-      headingElements.forEach((element) => {
+      headingElements.forEach(element => {
         observerRef.current?.observe(element)
       })
     }
@@ -146,13 +146,13 @@ export function TableOfContents({ className }: TableOfContentsProps) {
 
   return (
     <div className={cn('space-y-4', className)}>
-      <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+      <div className="text-foreground flex items-center gap-2 text-sm font-semibold">
         <Scroll className="h-4 w-4" />
         目录
       </div>
 
-      <nav className="space-y-1 max-h-[60vh] overflow-y-auto">
-        {headings.map((heading) => {
+      <nav className="max-h-[60vh] space-y-1 overflow-y-auto">
+        {headings.map(heading => {
           const isActive = activeId === heading.id
           const paddingLeft = (heading.level - 2) * 16
 
@@ -161,18 +161,16 @@ export function TableOfContents({ className }: TableOfContentsProps) {
               key={heading.id}
               onClick={() => handleHeadingClick(heading.id)}
               className={cn(
-                'w-full text-left text-sm transition-colors hover:text-foreground',
-                'flex items-center gap-2 py-1 px-2 rounded-md cursor-pointer',
-                'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-                isActive
-                  ? 'bg-primary/10 text-primary font-medium'
-                  : 'text-muted-foreground'
+                'hover:text-foreground w-full text-left text-sm transition-colors',
+                'flex cursor-pointer items-center gap-2 rounded-md px-2 py-1',
+                'focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:outline-none',
+                isActive ? 'bg-primary/10 text-primary font-medium' : 'text-muted-foreground'
               )}
               style={{ paddingLeft: `${paddingLeft + 8}px` }}
             >
               <ChevronRight
                 className={cn(
-                  'h-3 w-3 transition-transform flex-shrink-0',
+                  'h-3 w-3 flex-shrink-0 transition-transform',
                   isActive ? 'rotate-90' : 'rotate-0'
                 )}
               />
@@ -221,26 +219,27 @@ export function ReadingProgress({ className, locale = 'zh' }: ReadingProgressPro
   }, [])
 
   // 国际化文本
-  const texts = locale === 'en'
-    ? {
-        title: 'Reading Progress',
-        completed: 'completed'
-      }
-    : {
-        title: '阅读进度',
-        completed: '已完成'
-      }
+  const texts =
+    locale === 'en'
+      ? {
+          title: 'Reading Progress',
+          completed: 'completed',
+        }
+      : {
+          title: '阅读进度',
+          completed: '已完成',
+        }
 
   return (
     <div className={cn('space-y-2', className)}>
-      <div className="text-sm font-semibold text-foreground">{texts.title}</div>
-      <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
+      <div className="text-foreground text-sm font-semibold">{texts.title}</div>
+      <div className="bg-secondary h-2 w-full overflow-hidden rounded-full">
         <div
           className="bg-primary h-2 rounded-full transition-all duration-300 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-muted-foreground text-xs">
         {Math.round(progress)}% {texts.completed}
       </div>
     </div>

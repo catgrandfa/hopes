@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // 图片优化
   images: {
-    domains: ['localhost', 'images.unsplash.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -28,6 +27,7 @@ const nextConfig: NextConfig = {
         pathname: '**',
       },
     ],
+    unoptimized: true,
   },
   // TypeScript 严格模式
   typescript: {

@@ -36,11 +36,11 @@ export function BlogContent({ children, className, locale = 'zh' }: BlogContentP
   return (
     <div className="relative">
       {/* 移动端 TOC 触发按钮 */}
-      <div className="lg:hidden fixed bottom-4 right-4 z-40">
+      <div className="fixed right-4 bottom-4 z-40 lg:hidden">
         <Sheet open={mobileTOCOpen} onOpenChange={setMobileTOCOpen}>
           <SheetTrigger asChild>
             <Button size="sm" className="shadow-lg">
-              <Scroll className="h-4 w-4 mr-2" />
+              <Scroll className="mr-2 h-4 w-4" />
               {locale === 'en' ? 'Contents' : '目录'}
             </Button>
           </SheetTrigger>
@@ -50,8 +50,7 @@ export function BlogContent({ children, className, locale = 'zh' }: BlogContentP
               <SheetDescription>
                 {locale === 'en'
                   ? 'Click on headings to quickly jump to corresponding content'
-                  : '点击标题快速跳转到对应内容'
-                }
+                  : '点击标题快速跳转到对应内容'}
               </SheetDescription>
             </SheetHeader>
             <div className="mt-6 space-y-6">
@@ -63,14 +62,14 @@ export function BlogContent({ children, className, locale = 'zh' }: BlogContentP
       </div>
 
       {/* 桌面端布局 */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
         {/* 主要内容 */}
         <div className="lg:col-span-3">
           <div className={className}>{children}</div>
         </div>
 
         {/* 侧边栏 TOC - 仅在桌面端显示 */}
-        <aside className="hidden lg:block lg:col-span-1 lg:sticky lg:top-24 lg:h-fit">
+        <aside className="hidden lg:sticky lg:top-24 lg:col-span-1 lg:block lg:h-fit">
           <div className="space-y-6">
             <ReadingProgress locale={locale} />
             <TableOfContents />

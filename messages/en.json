@@ -2,6 +2,8 @@
   "nav": {
     "home": "Home",
     "blog": "Blog",
+    "lab": "Lab",
+    "notes": "Notes",
     "about": "About",
     "theme": "Theme"
   },
@@ -49,12 +51,18 @@
     "noComments": "No comments yet"
   },
   "about": {
-    "title": "About Me",
-    "subtitle": "A full-stack engineer with 5 years of experience, focusing on modern web development technology stack",
+    "title": "About hopes.icu",
+    "subtitle": "A steady cadence of reusable engineering knowledge and gentle, human notes. We ship small, we iterate, we keep the spirit warm.",
     "intro": {
-      "title": "Personal Introduction",
-      "paragraph1": "I am a passionate full-stack engineer with five years of software development experience. I specialize in building high-performance, scalable web applications using modern technology stacks. I excel in both frontend and backend development, with complete project development experience, capable of handling the entire process from requirements analysis to deployment.",
-      "paragraph2": "Beyond technology, I am passionate about learning new technologies, participating in open-source projects, and sharing my development experiences and thoughts through this blog. I believe that continuous learning and knowledge sharing are essential qualities for becoming an excellent engineer."
+      "title": "Site Introduction",
+      "paragraph1": "Here, I try to treat life with an engineer's methodology: break down problems, validate hypotheses, record trade-offs, and iterate continuously. Technical writing emphasizes reusability and maintainability, while life writing emphasizes honesty and warmth.",
+      "paragraph2": "I write about: Next.js, performance optimization, engineering toolchains, UI/UX, animations and experiments. I also write about: learning lists, retrospectives, reading, and creative energy."
+    },
+    "vision": {
+      "title": "Three Core Themes",
+      "tech": "Practical technology: From problem to solution, from trade-offs to implementation, emphasizing boundaries and choices.",
+      "lab": "Sustainable writing: Driven by weekly notes, lists, and experiments, not chasing trends but \"reusable value\".",
+      "notes": "Visible hope: Between vulnerability and resilience, leaving authentic traces and gentle expressions."
     },
     "skills": {
       "title": "Skills & Expertise",
@@ -89,19 +97,39 @@
       "sendEmail": "Send Email"
     },
     "cta": {
-      "title": "Let's Collaborate",
-      "description": "If you have any project collaborations, technical exchanges, or just want to say hello, feel free to contact me anytime!",
+      "title": "Contact & Subscribe",
+      "description": "If you're willing, treat this as a long-term updated reusable knowledge base, and also as a window—see how I maintain hope's breathing between reality and ideals.",
       "button": "Contact Me"
     }
   },
     "home": {
+    "hero": {
+      "title": "Let Hope Breathe in Practice",
+      "subtitle": "Frontend craft, engineering retros, and notes on living. For a reusable future self.",
+      "ctaReadLatest": "Read latest",
+      "ctaAbout": "About"
+    },
+    "sections": {
+      "tech": {
+        "title": "Engineering",
+        "description": "Next.js / Performance / Engineering / UI/UX. Starting from problems, aiming for reusability."
+      },
+      "lab": {
+        "title": "Lab",
+        "description": "Animations, visualizations, and interactive prototypes. Runnable, forkable, extensible."
+      },
+      "notes": {
+        "title": "Notes",
+        "description": "Weekly journals, books & films, and creative energy management. Expression beyond algorithms."
+      }
+    },
     "ctaPrimary": "View all",
     "latestTitle": "Latest posts"
   },
   "footer": {
     "copyright": "All rights reserved",
     "builtWith": "Built with {tech}",
-    "tagline": "A modern Next.js 15 blog crafted to share engineering and design stories.",
+    "tagline": "Reusable practice, sustainable hope.",
     "linksTitle": "Quick links",
     "contact": {
       "title": "Contact Information",
@@ -109,9 +137,9 @@
     }
   },
   "metadata": {
-    "title": "Hopes Blog",
-    "description": "A modern full-stack personal blog system built with Next.js 15",
-    "keywords": ["blog", "Next.js", "React", "TypeScript", "Tailwind CSS"],
-    "siteName": "Hopes Blog"
+    "title": "hopes.icu",
+    "description": "Frontend craft, engineering retros, and notes on living. For a reusable future self.",
+    "keywords": ["frontend", "Next.js", "React", "TypeScript", "Tailwind CSS", "engineering", "performance", "life"],
+    "siteName": "hopes.icu"
   }
 }

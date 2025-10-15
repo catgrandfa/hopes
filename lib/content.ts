@@ -21,7 +21,7 @@ const FrontmatterSchema = z.object({
   excerpt: z.string().optional().default(''),
   coverImage: z.string().optional(),
   publishedAt: z.string(),
-  locale: z.string().refine((value) => locales.includes(value as Locale), {
+  locale: z.string().refine(value => locales.includes(value as Locale), {
     message: 'Unsupported locale',
   }),
   tags: z.array(z.string()).default([]),
@@ -59,8 +59,8 @@ async function loadPosts(): Promise<RawPost[]> {
   const files = await fs.readdir(postsDirectory)
   const posts = await Promise.all(
     files
-      .filter((filename) => filename.endsWith('.md') || filename.endsWith('.mdx'))
-      .map(async (filename) => {
+      .filter(filename => filename.endsWith('.md') || filename.endsWith('.mdx'))
+      .map(async filename => {
         const filePath = path.join(postsDirectory, filename)
         const fileContent = await fs.readFile(filePath, 'utf-8')
         const { data, content } = matter(fileContent)
@@ -68,7 +68,7 @@ async function loadPosts(): Promise<RawPost[]> {
 
         if (!parsed.success) {
           const message = parsed.error.issues
-            .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
+            .map(issue => `${issue.path.join('.')}: ${issue.message}`)
             .join(', ')
 
           throw new Error(`Invalid frontmatter in ${filename}: ${message}`)
@@ -89,7 +89,7 @@ async function loadPosts(): Promise<RawPost[]> {
           body: content,
           filePath,
         }
-      }),
+      })
   )
 
   cache.set(cacheKey, posts)
@@ -99,13 +99,13 @@ async function loadPosts(): Promise<RawPost[]> {
 export async function getAllPosts(locale: Locale): Promise<PostSummary[]> {
   const posts = await loadPosts()
   return posts
-    .filter((post) => post.locale === locale)
+    .filter(post => post.locale === locale)
     .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())
 }
 
 export async function getPostBySlug(locale: Locale, slug: string): Promise<Post | null> {
   const posts = await loadPosts()
-  const matched = posts.find((post) => post.locale === locale && post.slug === slug)
+  const matched = posts.find(post => post.locale === locale && post.slug === slug)
 
   if (!matched) {
     return null
@@ -138,8 +138,8 @@ export async function getCategories(locale: Locale) {
   const posts = await getAllPosts(locale)
   const categories = new Map<string, number>()
 
-  posts.forEach((post) => {
-    post.categories?.forEach((category) => {
+  posts.forEach(post => {
+    post.categories?.forEach(category => {
       categories.set(category, (categories.get(category) ?? 0) + 1)
     })
   })
@@ -151,8 +151,8 @@ export async function getTags(locale: Locale) {
   const posts = await getAllPosts(locale)
   const tags = new Map<string, number>()
 
-  posts.forEach((post) => {
-    post.tags?.forEach((tag) => {
+  posts.forEach(post => {
+    post.tags?.forEach(tag => {
       tags.set(tag, (tags.get(tag) ?? 0) + 1)
     })
   })
@@ -166,11 +166,11 @@ export async function searchPosts(locale: Locale, query: string) {
   const posts = await getAllPosts(locale)
 
   return posts.filter(
-    (post) =>
+    post =>
       post.title.toLowerCase().includes(lower) ||
       post.excerpt?.toLowerCase().includes(lower) ||
-      post.tags?.some((tag) => tag.toLowerCase().includes(lower)) ||
-      post.categories?.some((category) => category.toLowerCase().includes(lower)),
+      post.tags?.some(tag => tag.toLowerCase().includes(lower)) ||
+      post.categories?.some(category => category.toLowerCase().includes(lower))
   )
 }
 

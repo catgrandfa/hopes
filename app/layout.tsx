@@ -1,7 +1,8 @@
 import './globals.css'
 import type { ReactNode } from 'react'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { ThemeProvider } from '@/lib/theme'
 
@@ -29,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 // 根布局不设置 metadata，全部在 locale layout 中处理
 
 interface RootLayoutProps {
- children: ReactNode
+  children: ReactNode
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -37,11 +38,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   // lang 属性将由浏览器和中间件自动处理
   return (
     <html suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <ThemeProvider defaultTheme="system">
-          {children}
-        </ThemeProvider>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+      >
+        <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
         <SpeedInsights />
+        <GoogleAnalytics gaId="G-M6Q31RFC33" />
       </body>
     </html>
   )

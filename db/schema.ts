@@ -38,21 +38,31 @@ export const tags = pgTable('tags', {
 // 文章分类关系表
 export const postCategories = pgTable('post_categories', {
   id: serial('id').primaryKey(),
-  postId: integer('post_id').references(() => posts.id).notNull(),
-  categoryId: integer('category_id').references(() => categories.id).notNull(),
+  postId: integer('post_id')
+    .references(() => posts.id)
+    .notNull(),
+  categoryId: integer('category_id')
+    .references(() => categories.id)
+    .notNull(),
 })
 
 // 文章标签关系表
 export const postTags = pgTable('post_tags', {
   id: serial('id').primaryKey(),
-  postId: integer('post_id').references(() => posts.id).notNull(),
-  tagId: integer('tag_id').references(() => tags.id).notNull(),
+  postId: integer('post_id')
+    .references(() => posts.id)
+    .notNull(),
+  tagId: integer('tag_id')
+    .references(() => tags.id)
+    .notNull(),
 })
 
 // 留言表
 export const comments = pgTable('comments', {
   id: serial('id').primaryKey(),
-  postId: integer('post_id').references(() => posts.id).notNull(),
+  postId: integer('post_id')
+    .references(() => posts.id)
+    .notNull(),
   author: text('author').notNull(),
   email: text('email').notNull(),
   content: text('content').notNull(),

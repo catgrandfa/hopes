@@ -2,6 +2,8 @@
   "nav": {
     "home": "首页",
     "blog": "博客",
+    "lab": "实验",
+    "notes": "笔记",
     "about": "关于",
     "theme": "主题"
   },
@@ -49,12 +51,18 @@
     "noComments": "暂无评论"
   },
   "about": {
-    "title": "关于我",
-    "subtitle": "五年经验的全栈工程师，专注于现代Web开发技术栈",
+    "title": "关于 hopes.icu",
+    "subtitle": "在技术与生活之间，持续产出可复用的经验与温柔的洞见。",
     "intro": {
-      "title": "个人简介",
-      "paragraph1": "我是一名充满热情的全栈工程师，拥有五年的软件开发经验。专注于使用现代技术栈构建高性能、可扩展的Web应用。我擅长前后端开发，具备完整的项目开发经验，从需求分析到部署上线的全流程都能独立完成。",
-      "paragraph2": "在技术之外，我也热衷于学习新技术、参与开源项目，并通过这个博客分享我的开发经验和思考。我相信持续学习和知识分享是成为一名优秀工程师的重要素质。"
+      "title": "站点介绍",
+      "paragraph1": "在这里，我尝试用工程师的方法对待生活：拆解问题、验证假设、记录取舍、持续迭代。技术写作强调可复用与可维护，生活写作强调诚实与温度。",
+      "paragraph2": "我写：Next.js、性能优化、工程化工具链、UI/UX、动效与实验。我也写：学习清单、复盘、阅读与创作能量。"
+    },
+    "vision": {
+      "title": "三条主线",
+      "tech": "可落地的技术：从问题到方案，从权衡到实现，强调取舍与边界。",
+      "lab": "可持续的写作：以周记/清单/实验驱动，不追热点，追\"复用价值\"。",
+      "notes": "可被看见的希望：在脆弱与复原之间，留下真实的痕迹与温柔的表达。"
     },
     "skills": {
       "title": "技能专长",
@@ -89,19 +97,39 @@
       "sendEmail": "发送邮件"
     },
     "cta": {
-      "title": "让我们合作",
-      "description": "如果您有任何项目合作、技术交流或者只是想打个招呼，欢迎随时联系我！",
+      "title": "联系与订阅",
+      "description": "如果你愿意，把这里当作一个长期更新的可复用知识库，也当作一扇窗——看见我如何在现实与理想之间，维持希望的呼吸。",
       "button": "联系我"
     }
   },
     "home": {
+    "hero": {
+      "title": "让希望在实践中呼吸",
+      "subtitle": "前端实践、工程复盘与生活记录。写给未来可复用的我。",
+      "ctaReadLatest": "阅读最新文章",
+      "ctaAbout": "关于本站"
+    },
+    "sections": {
+      "tech": {
+        "title": "技术实践",
+        "description": "Next.js / 性能 / 工程化 / UI/UX。以问题为起点，以复用为目标。"
+      },
+      "lab": {
+        "title": "小型实验",
+        "description": "动效、可视化与交互原型。可跑、可 fork、可扩展。"
+      },
+      "notes": {
+        "title": "生活记录",
+        "description": "周记、书影音与创作能量管理。让表达不只为算法。"
+      }
+    },
     "ctaPrimary": "查看全部",
     "latestTitle": "最新文章"
   },
   "footer": {
     "copyright": "版权所有",
     "builtWith": "使用 {tech} 构建",
-    "tagline": "基于 Next.js 15 的现代化个人博客，分享技术与设计实践。",
+    "tagline": "在可复用的实践里，寻找可持续的希望。",
     "linksTitle": "快速链接",
     "contact": {
       "title": "联系方式",
@@ -109,9 +137,9 @@
     }
   },
   "metadata": {
-    "title": "Hopes Blog",
-    "description": "一个基于 Next.js 15 的现代化全栈个人博客系统",
-    "keywords": ["博客", "Next.js", "React", "TypeScript", "Tailwind CSS"],
-    "siteName": "Hopes Blog"
+    "title": "hopes.icu",
+    "description": "前端实践、工程复盘与生活记录。写给未来可复用的我。",
+    "keywords": ["前端", "Next.js", "React", "TypeScript", "Tailwind CSS", "工程化", "性能优化", "生活记录"],
+    "siteName": "hopes.icu"
   }
 }

@@ -19,41 +19,64 @@ export async function generateMetadata({
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
-  const title = t('title')
   const description = t('description')
   const keywords = t.raw('keywords') as string[]
   const siteName = t('siteName')
 
+  // 构建基础URL
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://hopes.icu'
+  const currentPath = locale === 'zh' ? '' : `/${locale}`
+  const fullUrl = `${baseUrl}${currentPath}`
+
   return {
     title: {
-      template: `%s | ${title}`,
-      default: title,
+      template: `%s · ${siteName}`,
+      default: siteName,
     },
     description,
     keywords,
     authors: [{ name: 'Hopes' }],
     creator: 'Hopes',
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+    metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: locale === 'zh' ? '/' : `/${locale}`,
+      canonical: currentPath || '/',
       languages: {
         'zh-CN': '/zh',
         'en-US': '/en',
+        'x-default': '/zh',
       },
     },
     openGraph: {
       type: 'website',
       locale: locale === 'zh' ? 'zh_CN' : 'en_US',
       alternateLocale: locale === 'zh' ? 'en_US' : 'zh_CN',
-      title,
+      title: siteName,
       description,
       siteName,
+      url: fullUrl,
+      images: [
+        {
+          url: '/api/og',
+          width: 1200,
+          height: 630,
+          alt: siteName,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: siteName,
       description,
+      images: ['/api/og'],
     },
+    icons: {
+      icon: [
+        { url: '/icons/favicon.svg', type: 'image/svg+xml' },
+        { url: '/icons/favicon.svg', sizes: '32x32', type: 'image/svg+xml' },
+      ],
+      apple: [{ url: '/icons/favicon.svg', sizes: '192x192', type: 'image/svg+xml' }],
+    },
+    manifest: '/site.webmanifest',
     robots: {
       index: true,
       follow: true,
@@ -65,50 +88,50 @@ export async function generateMetadata({
         'max-snippet': -1,
       },
     },
+    verification: {
+      // 可以添加搜索引擎验证码
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+      yandex: process.env.YANDEX_VERIFICATION,
+      yahoo: process.env.YAHOO_SITE_VERIFICATION,
+    },
   }
 }
 
 interface LocaleLayoutProps {
- children: ReactNode
- params: Promise<{ locale: string }>
+  children: ReactNode
+  params: Promise<{ locale: string }>
 }
 
 export function generateStaticParams() {
- return locales.map((locale) => ({ locale }))
+  return locales.map(locale => ({ locale }))
 }
 
-export default async function LocaleLayout({
- children,
- params,
-}: LocaleLayoutProps) {
- const { locale } = await params
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const { locale } = await params
 
- if (!isLocale(locale)) {
-  notFound()
- }
+  if (!isLocale(locale)) {
+    notFound()
+  }
 
- setRequestLocale(locale)
+  setRequestLocale(locale)
 
- const messages = await getMessages()
+  const messages = await getMessages()
 
- return (
-  <NextIntlClientProvider messages={messages}>
-   <div className="relative flex min-h-screen flex-col bg-background text-foreground">
-    <div
-     aria-hidden
-     className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
-     <div className="absolute left-1/2 top-[-220px] h-[420px] w-[760px] -translate-x-1/2 bg-primary/20 blur-3xl" />
-     <div className="absolute bottom-[-260px] left-1/2 h-[460px] w-[820px] -translate-x-1/2 bg-secondary/25 blur-[140px]" />
-     <div className="absolute inset-x-0 top-[180px] h-px bg-gradient-to-r from-transparent via-border/70 to-transparent" />
-    </div>
-    <Header />
-    <main className="relative isolate flex-1">
-     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent mix-blend-overlay" />
-     <div className="relative z-10">{children}</div>
-    </main>
-    <Footer />
-   </div>
-  </NextIntlClientProvider>
- )
+  return (
+    <NextIntlClientProvider messages={messages}>
+      <div className="bg-background text-foreground relative flex min-h-screen flex-col">
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="bg-primary/20 absolute top-[-220px] left-1/2 h-[420px] w-[760px] -translate-x-1/2 blur-3xl" />
+          <div className="bg-secondary/25 absolute bottom-[-260px] left-1/2 h-[460px] w-[820px] -translate-x-1/2 blur-[140px]" />
+          <div className="via-border/70 absolute inset-x-0 top-[180px] h-px bg-gradient-to-r from-transparent to-transparent" />
+        </div>
+        <Header />
+        <main className="relative isolate flex-1">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent mix-blend-overlay" />
+          <div className="relative z-10">{children}</div>
+        </main>
+        <Footer />
+      </div>
+    </NextIntlClientProvider>
+  )
 }
