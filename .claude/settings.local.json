@@ -22,7 +22,10 @@
       "Bash(npx eslint:*)",
       "Bash(chmod:*)",
       "Bash(./scripts/install-git-hooks.sh:*)",
-      "Bash(npx treer:*)"
+      "Bash(npx treer:*)",
+      "Bash(pnpm tsx:*)",
+      "Bash(node --import tsx/esm:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []
