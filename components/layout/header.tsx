@@ -8,12 +8,6 @@ import { Menu, X, Languages } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 
 export default function Header() {
@@ -103,26 +97,12 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Languages className="h-4 w-4" />
-                  {locale === 'zh' ? '中文' : 'EN'}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href={`/zh${pathAfterLocale}`} className="w-full cursor-pointer">
-                    中文
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href={`/en${pathAfterLocale}`} className="w-full cursor-pointer">
-                    EN
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button variant="outline" size="sm" className="gap-2" asChild>
+              <Link href={`/${locale === 'zh' ? 'en' : 'zh'}${pathAfterLocale}`} className="cursor-pointer">
+                <Languages className="h-4 w-4" />
+                {locale === 'zh' ? 'EN' : '中文'}
+              </Link>
+            </Button>
           </div>
 
           <ThemeToggle />
@@ -161,34 +141,16 @@ export default function Header() {
             </nav>
 
             <div className="md:hidden">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="w-full justify-start gap-2">
-                    <Languages className="h-4 w-4" />
-                    {locale === 'zh' ? '中文' : 'EN'}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-full">
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href={`/zh${pathAfterLocale}`}
-                      className="w-full cursor-pointer"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      中文
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href={`/en${pathAfterLocale}`}
-                      className="w-full cursor-pointer"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      EN
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button variant="outline" size="sm" className="w-full justify-start gap-2" asChild>
+                <Link
+                  href={`/${locale === 'zh' ? 'en' : 'zh'}${pathAfterLocale}`}
+                  className="cursor-pointer"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Languages className="h-4 w-4" />
+                  {locale === 'zh' ? 'EN' : '中文'}
+                </Link>
+              </Button>
             </div>
 
             <div className="flex items-center justify-between">
