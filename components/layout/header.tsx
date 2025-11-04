@@ -29,8 +29,8 @@ export default function Header() {
   const navigation = [
     { href: `/${locale}`, label: tNav('home') },
     { href: `/${locale}/blog`, label: tNav('blog') },
-    { href: `/${locale}/blog?tag=lab`, label: tNav('lab') },
-    { href: `/${locale}/blog?tag=notes`, label: tNav('notes') },
+    // { href: `/${locale}/blog?tag=lab`, label: tNav('lab') },
+    // { href: `/${locale}/blog?tag=notes`, label: tNav('notes') },
     { href: `/${locale}/about`, label: tNav('about') },
   ]
 
@@ -100,7 +100,7 @@ export default function Header() {
               className={cn(
                 'px-4 py-1.5 text-sm font-medium transition-all duration-200',
                 isActive(item.href)
-                  ? 'bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/30 ring-offset-2 ring-offset-background'
+                  ? 'bg-primary text-primary-foreground ring-primary/30 ring-offset-background shadow-sm ring-2 ring-offset-2'
                   : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
               )}
             >
@@ -147,7 +147,7 @@ export default function Header() {
                   className={cn(
                     'px-4 py-2 text-base font-medium transition-all duration-200',
                     isActive(item.href)
-                      ? 'bg-primary text-primary-foreground shadow-sm ring-2 ring-primary/30 ring-offset-2 ring-offset-background'
+                      ? 'bg-primary text-primary-foreground ring-primary/30 ring-offset-background shadow-sm ring-2 ring-offset-2'
                       : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                   )}
                   onClick={() => setIsMenuOpen(false)}

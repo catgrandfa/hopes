@@ -5,6 +5,7 @@ import { PostCard } from '@/components/blog/post-card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { formatDate } from '@/lib/utils'
+import { Plus } from 'lucide-react'
 import { getAllPosts, getCategories, getTags, type PostSummary } from '@/lib/content'
 import { isLocale, type Locale } from '@/lib/i18n'
 import { getTranslations } from 'next-intl/server'
@@ -70,7 +71,15 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
   return (
     <div className="container space-y-16 py-16">
       <section className="space-y-6 text-center">
-        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{t('latestPosts')}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{t('latestPosts')}</h1>
+          <Link href={`/${locale}/blog/create`}>
+            <Button size="lg" className="flex items-center gap-2">
+              <Plus className="h-4 w-4" />
+              创建博客
+            </Button>
+          </Link>
+        </div>
 
         <form className="mx-auto flex max-w-xl items-center gap-4" method="get">
           <Input
