@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, Sparkles } from 'lucide-react'
-import Image from 'next/image'
+import { Calendar, Clock } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -92,80 +91,60 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
         <div className="space-y-6">
           {posts.length ? (
             posts.map(post => (
-              <Card key={`${post.slug}-${post.locale}`} className="group transition-all duration-200 hover:shadow-md">
+              <Card
+                key={`${post.slug}-${post.locale}`}
+                className="group transition-all duration-200 hover:shadow-md"
+              >
                 <CardContent className="p-6">
-                  <div className="flex flex-col gap-4 md:flex-row md:gap-6">
-                    {/* Image */}
-                    <div className="relative h-32 w-full overflow-hidden rounded-lg md:h-24 md:w-32 md:flex-shrink-0">
-                      {post.coverImage ? (
-                        <Image
-                          src={post.coverImage}
-                          alt={post.title}
-                          fill
-                          className="object-cover transition duration-500 group-hover:scale-105"
-                          sizes="(min-width: 768px) 128px, 100vw"
-                          priority={false}
-                          placeholder="blur"
-                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8A8A"
-                        />
-                      ) : (
-                        <div className="from-primary/10 via-secondary/40 to-accent/30 flex h-full w-full items-center justify-center bg-gradient-to-br">
-                          <Sparkles className="text-foreground/60 h-6 w-6" />
-                        </div>
-                      )}
+                  <div className="space-y-3">
+                    {/* Meta information */}
+                    <div className="text-muted-foreground flex flex-wrap items-center gap-4 text-sm">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar className="h-4 w-4" />
+                        {formatDate(post.publishedAt, locale)}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" />
+                        {post.readingTime} {t('minutes')}
+                      </span>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1 space-y-3">
-                      {/* Meta information */}
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Calendar className="h-4 w-4" />
-                          {formatDate(post.publishedAt, locale)}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock className="h-4 w-4" />
-                          {post.readingTime} {t('minutes')}
-                        </span>
-                      </div>
-
-                      {/* Title and excerpt */}
-                      <div>
-                        <h3 className="text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
-                          <Link href={`/${locale}/blog/${post.slug}`} className="hover:underline">
-                            {post.title}
-                          </Link>
-                        </h3>
-                        {post.excerpt ? (
-                          <p className="text-muted-foreground mt-2 line-clamp-2">{post.excerpt}</p>
-                        ) : null}
-                      </div>
-
-                      {/* Tags and read more */}
-                      <div className="flex items-center justify-between">
-                        {post.tags?.length ? (
-                          <div className="flex flex-wrap gap-2">
-                            {post.tags.slice(0, 3).map(tag => (
-                              <Badge key={tag} variant="muted" className="text-xs">
-                                #{tag}
-                              </Badge>
-                            ))}
-                            {post.tags.length > 3 && (
-                              <Badge variant="muted" className="text-xs">
-                                +{post.tags.length - 3}
-                              </Badge>
-                            )}
-                          </div>
-                        ) : (
-                          <div />
-                        )}
-                        <Link
-                          href={`/${locale}/blog/${post.slug}`}
-                          className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-                        >
-                          {tCommon('readMore')}
+                    {/* Title and excerpt */}
+                    <div>
+                      <h3 className="group-hover:text-primary text-xl font-semibold tracking-tight transition-colors">
+                        <Link href={`/${locale}/blog/${post.slug}`} className="hover:underline">
+                          {post.title}
                         </Link>
-                      </div>
+                      </h3>
+                      {post.excerpt ? (
+                        <p className="text-muted-foreground mt-2 line-clamp-2">{post.excerpt}</p>
+                      ) : null}
+                    </div>
+
+                    {/* Tags and read more */}
+                    <div className="flex items-center justify-between">
+                      {post.tags?.length ? (
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.slice(0, 3).map(tag => (
+                            <Badge key={tag} variant="muted" className="text-xs">
+                              #{tag}
+                            </Badge>
+                          ))}
+                          {post.tags.length > 3 && (
+                            <Badge variant="muted" className="text-xs">
+                              +{post.tags.length - 3}
+                            </Badge>
+                          )}
+                        </div>
+                      ) : (
+                        <div />
+                      )}
+                      <Link
+                        href={`/${locale}/blog/${post.slug}`}
+                        className="text-primary text-sm font-medium underline-offset-4 hover:underline"
+                      >
+                        {tCommon('readMore')}
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
