@@ -1,0 +1,384 @@
+---
+
+title: "From Coding to Verifying: Three Years of AI Collaboration as a Full-Stack Engineer"
+description: "An original reflection on how AI reshapes full-stack development, shifting engineers from writing code to designing context, validating logic, and orchestrating human–AI workflows — with real backend and frontend examples."
+date: "2025-11-26"
+categories: ["frontend", "fullstack", "ai-development", "engineering-practices"]
+publishedAt: "2025-11-26"
+locale: "en"
+slug: "ai-collaboration-writing-to-verifying"
+tags: ["ai-assisted-development", "frontend-ai", "gemini3pro", "engineering-productivity", "code-quality", "context-engineering"]
+---------------------------------------------------------------------------------------------------------------------------------
+
+## When 30% of the Code Comes From AI — What Should Full-Stack Engineers Actually Spend Time On?
+
+I’ve been a full-stack developer long enough to experience multiple waves of tooling revolutions — package managers, TypeScript, React, SSR, serverless, design systems.
+Nothing has reshaped my workflow as dramatically as the last three years of AI-assisted development.
+
+The most surprising part?
+
+> **AI kept writing more code for me — yet I became more tired, not less.**
+
+Backend controllers, database access layers, types, validators…
+Frontend components, layout scaffolding, responsive CSS, translations…
+AI writes them all — and writes them fast.
+
+But the turning point came when I realized:
+
+> **The hardest part is no longer generating code.
+> The hardest part is verifying that the generated code is *correct*.**
+
+This article is my personal synthesis as a full-stack engineer building real products with AI every day. Not a translation — a complete original piece inspired by the ideas in the referenced article, extended with my own experiences, especially from the frontend.
+
+---
+
+## 1. Two Opposite Voices — and How Full-Stack Developers End Up Caught in the Middle
+
+Every discussion on AI coding collapses into two camps:
+
+### ⚡ “Look how fast AI is!”
+
+“I generated 20 components in 10 minutes.”
+“I built the whole login flow without typing anything.”
+
+### ⚡ “AI is unreliable and costs more time.”
+
+“I spent half an hour debugging AI’s mistakes.”
+“Looks correct, but breaks in edge cases.”
+
+Both are true.
+
+* **Backend** AI shines in CRUD, DTOs, pagination, boilerplate
+* **Frontend** AI shines in layout, component scaffolding, design translation
+* **But** AI struggles on:
+
+  * complex business logic
+  * stateful UIs with subtle interactions
+  * codebases with history and hidden constraints
+  * legacy systems with inconsistent styles
+
+My early AI adoption was chaotic:
+
+* If something “felt like AI could do it,” I threw it in
+* Sometimes the output was amazing
+* Sometimes I spent hours fixing elegant-looking but subtly broken code
+
+I realized:
+**Success was random because my process was random.**
+
+---
+
+## 2. Stop Asking “Is the AI Accurate?” — Start Asking “Is It Worth It?”
+
+I used to fixate on accuracy:
+
+* “Did AI generate the correct component?”
+* “Is this reducer logically sound?”
+* “Is the validation rule complete?”
+
+But accuracy is a trap.
+
+The real metric is:
+
+```
+Value = Manual Time ÷ (AI Generation Time + Fix Time)
+```
+
+If a task takes me:
+
+* **6 hours manually**
+* and **1 hour with AI including fixes**
+
+→ That’s a win
+Even if the first generation was imperfect.
+
+### The “sweet spot” of AI work
+
+For both frontend and backend, high-ROI AI tasks share four characteristics:
+
+1. **Repetitive / template-based**
+2. **Time-consuming but low creativity**
+3. **Low risk, easy to review**
+4. **Clear verification criteria**
+
+---
+
+## 3. The Frontend Revolution: Design-to-Code Is No Longer a Dream
+
+The biggest shift for frontend engineers happened in 2024–2025:
+
+> **Gemini 3 Pro and similar models reached near-pixel-perfect design reconstruction.**
+
+I’m not exaggerating:
+Give it a Figma frame or even a screenshot, it outputs:
+
+* React components
+* Tailwind or CSS modules
+* Responsive breakpoints
+* Motion presets
+* Accessible markup
+* Semantic structure
+* Even fine-tuned spacing rules
+
+For components like:
+
+* navigation bars
+* hero sections
+* pricing cards
+* dashboards
+* settings forms
+
+The accuracy often reaches **90–100% visual parity**.
+
+### What does a frontend engineer do now?
+
+We no longer waste time hand-coding:
+
+❌ spacing
+❌ layout
+❌ pixel alignment
+❌ repetitive patterns
+❌ boilerplate interactions
+
+Instead, our time goes into:
+
+### ✔ Interaction validation
+
+Did the menu animate correctly?
+Are the tabs keyboard accessible?
+
+### ✔ Logic consistency
+
+Does the component handle all states?
+Empty, loading, error, offline, etc.
+
+### ✔ Performance & compatibility
+
+Does it behave the same across browsers?
+Does React’s hydration work with the generated structure?
+Are animations GPU-friendly?
+
+### ✔ Edge-case UX
+
+What happens if the user pastes a long string?
+What if API requests race?
+
+### ✔ Code quality & maintainability
+
+AI can match design — but it’s *our job* to guarantee:
+
+* predictable component architecture
+* clean props design
+* consistent naming
+* shared utilities
+* integration with our design system
+
+In other words:
+
+> **Frontend developers moved from “drawing UI with code”
+> to “verifying UI correctness in a complex environment.”**
+
+And this shift mirrors exactly what happened on backend.
+
+---
+
+## 4. Backend + Frontend = The Same New Role: Context Designer
+
+The old role of a full-stack engineer was:
+
+* Write code
+* Write more code
+* Write tests
+* Maintain code
+
+The new AI-augmented role is:
+
+> **Design context → Generate → Validate → Integrate → Test → Monitor**
+
+### I now treat AI like a highly skilled but context-blind intern
+
+AI is brilliant at:
+
+* coding patterns
+* consistency
+* speed
+* structure
+* transformations
+
+AI is terrible at:
+
+* intuition
+* business rules
+* historic constraints
+* implicit assumptions
+* domain-specific pitfalls
+
+So my workflow changed from:
+
+**80% coding → 20% verifying**
+to
+**30% coding → 70% verifying / validating / designing context**
+
+And honestly?
+This new ratio is harder — but also more valuable.
+
+---
+
+## 5. Making Projects “AI-Ready”: Standardization + Automation
+
+This is the part almost every team underestimates.
+
+### AI thrives in clean environments.
+
+AI suffers in messy ones.
+
+The best investments I’ve made:
+
+### **Backend**
+
+* standardizing DTOs
+* centralizing error codes
+* unifying logging patterns
+* writing clear OpenAPI specs
+* keeping SQL / Prisma schema consistent
+
+### **Frontend**
+
+* consistent folder structure
+* documented design system tokens
+* reusable component patterns
+* one source of truth for spacing / typography
+* onboarding guides for AI (“How we name components”, etc.)
+
+AI becomes dramatically more accurate when the project is coherent.
+
+In a messy repo?
+AI hallucinations explode.
+
+### Automation completes the loop
+
+* pre-commit hooks
+* component snapshot tests
+* visual regression tests
+* type-level validations
+* storybook interactions
+* PR checks
+* automated linting
+* schema-driven UI generation
+
+AI now sets up most of these for me.
+
+The result?
+
+> **Developers spend their effort on decisions,
+> not on glue code and wiring.**
+
+---
+
+## 6. Why Developers Feel More Exhausted Than Before
+
+This is an uncomfortable truth:
+
+> **Humans are LLMs with tiny context windows and expensive context switching.**
+
+AI writes fast, but it also creates:
+
+* more PRs
+* more decisions
+* more threads
+* more code to validate
+* more interactions to test
+* more complexity to manage
+
+This leads to “attention fragmentation.”
+The brain becomes the bottleneck.
+
+### My survival strategy as a full-stack engineer
+
+* **Deep work blocks**: one topic per block
+* **AI batching**: prepare prompts → let AI run → batch-review
+* **3-minute rule**: instant decisions for trivial tasks
+* **Clear prompts**: always include background + constraints
+* **One main project per day**: avoid context thrashing
+
+AI magnifies productivity —
+but only when *we protect our attention*.
+
+---
+
+## 7. Two Principles That Will Outlast Every AI Tool
+
+### **1. The bottleneck has shifted from generation to validation.**
+
+The code is cheap.
+Correctness is expensive.
+
+### **2. Context is King.**
+
+Your AI output is only as good as:
+
+* your specs
+* your examples
+* your constraints
+* your documentation
+* your architecture
+* your clarity
+
+Teams that embrace this outperform those that rely on “prompt magic.”
+
+---
+
+## 8. Final Advice for Full-Stack Developers
+
+### If you’re new to AI coding
+
+Start with:
+
+* CRUD
+* simple components
+* small migrations
+
+Learn the “value equation.”
+
+### If you’re already using AI extensively
+
+Invest in:
+
+* better context
+* clearer prompts
+* stronger validation pipelines
+* project-wide standardization
+
+### If you’re a tech lead or manager
+
+Shift from:
+
+> “How fast can AI generate code?”
+> to
+> “How robust is our human–AI collaboration pipeline?”
+
+---
+
+## Closing Thoughts
+
+AI hasn’t replaced developers.
+But it has fundamentally **reshaped the job**.
+
+We’re no longer judged by:
+
+* how fast we type
+* how clever our abstractions are
+
+Instead, our core value is:
+
+* how well we express intent
+* how well we design systems
+* how effectively we validate correctness
+* how reliably we orchestrate AI
+
+AI now writes a significant portion of the code.
+But we decide what gets built, how it fits together, and whether it is safe to ship.
+
+We’ve moved from “writing code”
+to
+**“designing and verifying an intelligent system that writes code with us.”**
