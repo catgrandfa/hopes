@@ -17,8 +17,8 @@ interface PostCardProps {
 
 export function PostCard({ post, locale, readMoreLabel, readingTimeLabel }: PostCardProps) {
   return (
-    <Card className="group relative flex max-h-72 flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-lg">
-      <CardHeader className="relative h-28 w-full overflow-hidden p-0">
+    <Card className="group relative flex h-full flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-lg">
+      <CardHeader className="relative h-24 w-full overflow-hidden p-0">
         {post.coverImage ? (
           <Image
             src={post.coverImage}
@@ -37,7 +37,7 @@ export function PostCard({ post, locale, readMoreLabel, readingTimeLabel }: Post
         )}
       </CardHeader>
 
-      <CardContent className="flex flex-1 flex-col space-y-2 p-3">
+      <CardContent className="flex flex-1 flex-col space-y-1.5 p-4">
         <div className="text-muted-foreground flex flex-wrap items-center gap-1.5 text-xs">
           <span className="inline-flex items-center gap-0.5">
             <Calendar className="h-3 w-3" />
@@ -71,7 +71,7 @@ export function PostCard({ post, locale, readMoreLabel, readingTimeLabel }: Post
         ) : null}
       </CardContent>
 
-      <CardFooter className="mt-auto px-3 pt-0 pb-3">
+      <CardFooter className="mt-auto px-4 pt-0 pb-4">
         <Link
           href={`/${locale}/blog/${post.slug}`}
           className="text-primary cursor-pointer text-xs font-medium underline-offset-4 hover:underline"

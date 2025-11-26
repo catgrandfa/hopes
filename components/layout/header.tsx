@@ -92,7 +92,7 @@ export default function Header() {
           <span className="font-display">hopes.icu</span>
         </Link>
 
-        <nav className="border-border/80 bg-background/80 hidden items-center gap-2 border px-1.5 py-1 shadow-sm md:flex">
+        <nav className="border-border/80 bg-background/80 hidden items-center gap-2 px-1.5 py-1 shadow-sm md:flex">
           {navigation.map(item => (
             <Link
               key={item.href}
